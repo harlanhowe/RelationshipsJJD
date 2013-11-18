@@ -9,10 +9,21 @@ public class RelationshipType {
 	private String maleInverse;
 	private String femaeInverse;
 	
-	
-	public RelationshipType()
+	/**
+	 * Sets up a relationship type
+	 * @param relationshipName
+	 * @param maleType
+	 * @param femaleType
+	 * @param maleInverse
+	 * @param femaleInverse
+	 */
+	public RelationshipType(String relationshipName, String maleType, String femaleType, String maleInverse, String femaleInverse)
 	{
-		
+		this.relationshipName = relationshipName;
+		this.maleType = maleType;
+		this.femaleType = femaleType;
+		this.maleInverse = maleInverse;
+		this.femaeInverse = femaleInverse;
 	}
 	
 }

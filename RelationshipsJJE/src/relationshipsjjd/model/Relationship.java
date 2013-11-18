@@ -22,8 +22,7 @@ public class Relationship {
 	
 	/**
 	 * Creates the string that will display relationships
-	 *    ie.
-	 *    John has a Teacher named Harlan
+	 *    ie. --> John has a Teacher named Harlan
 	 */
 	@Override
 	public String toString()

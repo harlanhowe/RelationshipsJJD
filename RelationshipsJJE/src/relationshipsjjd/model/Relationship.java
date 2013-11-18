@@ -1,4 +1,4 @@
-package relationshipsjje.model;
+package relationshipsjjd.model;
 
 
 public class Relationship {

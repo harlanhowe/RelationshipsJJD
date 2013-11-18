@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package relationshipsjje;
+package relationshipsjjd;
 
 /**
  *
  * @author kadmin
  */
-public class RelationshipsJJE {
+public class RelationshipsJJD {
 
     /**
      * @param args the command line arguments

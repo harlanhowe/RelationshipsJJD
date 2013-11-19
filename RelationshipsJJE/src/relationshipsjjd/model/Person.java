@@ -67,6 +67,11 @@ public class Person {
     @Override
     public String toString()
     {
-        return "";
+        String theString = "";
+        for(int i=0; i<relationships.size(); i++)
+        {
+            theString.concat(relationships.get(i).toString() + "\n");
+        }
+        return theString;
     }
 }

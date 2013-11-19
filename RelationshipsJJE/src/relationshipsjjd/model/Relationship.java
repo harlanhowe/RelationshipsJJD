@@ -27,7 +27,7 @@ public class Relationship {
 	@Override
 	public String toString()
 	{
-		return super.toString();
+		return String.format("%s has a %s named %s", this.IDPerson1, this.IDRelationType, this.IDPerson2);
 	}
 	
 	public int getIDPerson1()

@@ -74,6 +74,35 @@ public class Controller
      */
     public static void removeRelationsihpType(int typeID)
     {
-        //test
+        
+    }
+    
+    /***
+     * Changes some parameter of a certain relationship type.
+     * @param typeID
+     * @param newTypeName
+     * @param inverseType
+     * @param maleType
+     * @param femaleType
+     * @param maleInverse
+     * @param femaleInverse 
+     */
+    public static void editRelationshipType(int typeID, String newTypeName, String inverseType,
+            String maleType, String femaleType, String maleInverse, String femaleInverse)
+    {
+        
+    }
+    
+    /***
+     * Goes to the indicated people and changes the RelationshipType
+     * @param personID
+     * @param secondPersonID
+     * @param relIDCurr
+     * @param relIDToChange 
+     */
+    public static void editRelationship(int personID, int secondPersonID,
+            int relIDCurr, int relIDToChange)
+    {
+        
     }
 }

@@ -47,6 +47,15 @@ public class Person
     }
     
     /***
+     * Adds a relationship to the list of relations
+     * @param relation 
+     */
+    public void addRelationship(Relationship relation)
+    {
+        relationships.add(relation);
+    }
+    
+    /***
      * Returns one string that is made up of all of this person's relationships
      * @return 
      */

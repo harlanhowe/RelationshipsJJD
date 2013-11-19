@@ -1,7 +1,9 @@
 package relationshipsjjd.controller;
 
 import java.util.ArrayList;
+
 import relationshipsjjd.model.Person;
+import relationshipsjjd.model.Relationship;
 import relationshipsjjd.model.RelationshipType;
 
 
@@ -39,7 +41,14 @@ public class Controller
      */
     public static void addRelationship(int firstID, int secondID, int relType)
     {
-        
+        if(relType < typeList.size())
+        {
+        	if(firstID < people.size() && secondID < people.size())
+        	{
+        		people.get(firstID).addRelationship(new Relationship(firstID, secondID, relType));
+        		people.get(secondID).addRelationship(new Relationship(secondID, firstID, typeList.get(relType).getInverseID()));
+        	}
+        }
     }
     
     /***
@@ -54,7 +63,10 @@ public class Controller
     public static void addRelationshipType(String typeName, String inverseType, String maleType,
             String femaleType, String maleInverse, String femaleInverse)
     {
-        
+        RelationshipType relTypeNorm = new RelationshipType(typeName, maleType, femaleType, maleInverse, femaleInverse, typeList.size()+1);
+        RelationshipType relTypeInvert = new RelationshipType(inverseType, maleInverse, femaleInverse, maleType, femaleType, typeList.size());
+        typeList.add(relTypeNorm);
+        typeList.add(relTypeInvert);
     }
     
     /***

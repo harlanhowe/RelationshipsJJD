@@ -8,6 +8,7 @@ public class RelationshipType {
 	private String femaleType;
 	private String maleInverse;
 	private String femaleInverse;
+	private int inverseID;
 	
 	/**
 	 * Sets up a relationship type
@@ -17,13 +18,19 @@ public class RelationshipType {
 	 * @param maleInverse
 	 * @param femaleInverse
 	 */
-	public RelationshipType(String relationshipName, String maleType, String femaleType, String maleInverse, String femaleInverse)
+	public RelationshipType(String relationshipName, String maleType, String femaleType, String maleInverse, String femaleInverse, int inverseID)
 	{
 		this.relationshipName = relationshipName;
 		this.maleType = maleType;
 		this.femaleType = femaleType;
 		this.maleInverse = maleInverse;
 		this.femaleInverse = femaleInverse;
+		this.inverseID = inverseID;
+	}
+	
+	public int getInverseID()
+	{
+		return inverseID;
 	}
 	
 	public String getRelationshipName()

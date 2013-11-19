@@ -74,6 +74,6 @@ public class Controller
      */
     public static void removeRelationsihpType(int typeID)
     {
-        
+        //test
     }
 }

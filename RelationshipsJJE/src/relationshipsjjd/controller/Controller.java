@@ -63,13 +63,15 @@ public class Controller {
     }
     
     /***
-     * Creates a new Person, "name" Adds person to people
+     * Creates a new Person, firstName, lastName
      * 
-     * @param name
+     * @param firstName
+     * @param lastName 
      */
-    public static void addPerson(String name)
+    public static void addPerson(String firstName, String lastName)
     {
-        
+        int ID = people.size();
+        people.add(new Person(firstName, lastName, ID));
     }
     
     /***

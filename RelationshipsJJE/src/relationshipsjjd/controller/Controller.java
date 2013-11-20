@@ -1,7 +1,10 @@
 package relationshipsjjd.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.Set;
 
 import relationshipsjjd.model.Person;
@@ -19,7 +22,38 @@ public class Controller {
      */
     public static void init()
     {
+        File peopleFile = new File("people.dat");
+        try
+        {
+            Scanner peopleScanner = new Scanner(peopleFile);
+        }
+        catch(FileNotFoundException fnfe)
+        {
+            System.out.println("File not found");
+            throw new RuntimeException();
+        }
         
+        File relTypeFile = new File("relTypes.dat");
+        try
+        {
+            Scanner relTypeScanner = new Scanner(relTypeFile);
+        }
+        catch(FileNotFoundException fnfe)
+        {
+            System.out.println("File not found");
+            throw new RuntimeException();
+        }
+        
+        File relFile = new File("relationships.dat");
+        try
+        {
+            Scanner relScanner = new Scanner(relFile);
+        }
+        catch(FileNotFoundException fnfe)
+        {
+            System.out.println("File not found");
+            throw new RuntimeException();
+        }
     }
     
     /***

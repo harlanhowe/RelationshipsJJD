@@ -12,7 +12,8 @@ import java.util.ArrayList;
  */
 public class Person {
     
-    private String name;
+    private String firstName;
+    private String lastName;
     private ArrayList<Relationship> relationships;
     private int ID;
     boolean isMale;
@@ -23,9 +24,10 @@ public class Person {
      * @param personName
      * @param personID
      */
-    public Person(String personName, int personID)
+    public Person(String personFirstName, String personLastName, int personID)
     {
-        name = personName;
+        firstName= personFirstName;
+        lastName=personLastName;
         ID = personID;
     }
     

@@ -17,8 +17,8 @@ public class Controller {
     private static HashMap<Integer, RelationshipType> typeMap;
     
     /***
-     * Reads through the files to get stored data Looks for people, Then
-     * relationship types, Then relationships
+     * Reads through the files to get stored data Looks for people, then
+     * relationship types, then relationships
      */
     public static void init()
     {
@@ -26,6 +26,12 @@ public class Controller {
         try
         {
             Scanner peopleScanner = new Scanner(peopleFile);
+            while(peopleScanner.hasNext())
+            {
+                int ID = peopleScanner.nextInt();
+                //Still trying to figure out how to get a separate first/last name
+                //String firstName = peopleScanner.next(String.format("%s", ID));
+            }
         }
         catch(FileNotFoundException fnfe)
         {

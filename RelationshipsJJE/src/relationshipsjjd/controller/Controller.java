@@ -2,6 +2,8 @@ package relationshipsjjd.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -34,8 +36,8 @@ public class Controller {
                 String infoString = peopleScanner.nextLine();
                 String[] items = infoString.split("\t");
                 int IDNum = Integer.parseInt(items[0]);
-                String firstName = items[1];
-                String lastName = items[2];
+                String firstName = items[2];
+                String lastName = items[1];
                 boolean isMale = Boolean.parseBoolean(items[3]);
                 
                 Person tempPerson = new Person(firstName, lastName, IDNum, isMale);
@@ -47,8 +49,6 @@ public class Controller {
             System.out.println("File not found");
             throw new RuntimeException();
         }
-        
-        System.out.println(people);
         
         File relTypeFile = new File("relTypes.dat");
         try
@@ -69,6 +69,7 @@ public class Controller {
                 
                 RelationshipType rel = new RelationshipType(typeName, maleType, femaleType, maleInverse, femaleInverse, invertID);
                 typeMap.put(ID, rel);
+                System.out.println(rel);
             }
         }
         catch(FileNotFoundException fnfe)
@@ -85,12 +86,93 @@ public class Controller {
             {
                 String infoString = relScanner.nextLine();
                 String[] items = infoString.split("\t");
+                int person1ID = Integer.parseInt(items[1]);
+                int person2ID = Integer.parseInt(items[2]);
+                int relType   = Integer.parseInt(items[3]);
+                if(people.containsKey(person1ID) && people.containsKey(person2ID))
+                {
+                    people.get(person1ID).addRelationship(new Relationship(person1ID, person2ID, relType));
+                }
             }
         }
         catch(FileNotFoundException fnfe)
         {
             System.out.println("File not found");
             throw new RuntimeException();
+        }
+        
+        Set<Integer> keys = people.keySet();
+        for(Integer key : keys)
+        {
+            System.out.println(people.get(key));
+        }
+    }
+    
+    /**
+     * Imagine the reverse process of the above method, save the people, relTypes, and relations
+     */
+    public static boolean savePeepsAndRelations()
+    {
+        try
+        {
+            File peopleFile = new File("people.dat");
+            File relTypeFile = new File("relTypes.dat");
+            File relFile = new File("relationships.dat");
+            
+            if(!peopleFile.exists())
+                peopleFile.createNewFile();
+            if(!relTypeFile.exists())
+                relTypeFile.createNewFile();
+            if(!relFile.exists())
+                relFile.createNewFile();
+            
+            //Commented out until we get the getSaveDescription() done for this one
+//            {
+//                //The people will be written within this area, indented to have the formatting look nice
+//                //Also garbage collection will happen faster and thus have less memory use
+//                
+//                PrintWriter peopleWriter = new PrintWriter(peopleFile);
+//                Set<Integer> keys = people.keySet();
+//                
+//                for(int key : keys)
+//                {
+//                    peopleWriter.write(key + "\t" + people.get(key).getSaveDescription());
+//                }
+//                peopleWriter.close();
+//            }
+            
+            
+            {
+                PrintWriter relTypeWriter = new PrintWriter(relTypeFile);
+                Set<Integer> keys = typeMap.keySet();
+                
+                for(int key : keys)
+                {
+                    relTypeWriter.write(key + "\t" + typeMap.get(key).getSaveDescription());
+                }
+                relTypeWriter.close();
+            }
+            
+            
+            {
+                PrintWriter relationWriter = new PrintWriter(relFile);
+                Set<Integer> keys = people.keySet();
+                
+                for(int key : keys)
+                {
+                    for(Relationship rel : people.get(key).getRelations())
+                    {
+                        relationWriter.write(key + "\t" + rel.getSaveDescription());
+                    }
+                }
+                relationWriter.close();
+            }
+            return true;
+        }
+        catch(IOException e)
+        {
+            System.out.println("Check out savePeepsAndRelations \nYEA!  We broke stuffs when creating new files!");
+            return false;
         }
     }
     
@@ -179,7 +261,8 @@ public class Controller {
     public static void removeRelationship(int personID, int secondPersonID,
             int typeID)
     {
-        
+        people.get(personID).removeRelationship(new Relationship(personID, secondPersonID, typeID));
+        people.get(secondPersonID).removeRelationship(new Relationship(secondPersonID, personID, typeID));
     }
     
     /***
@@ -191,6 +274,22 @@ public class Controller {
     {
         typeMap.remove(typeMap.get(typeID).getInverseID());
         typeMap.remove(typeID);
+        Set<Integer> peopleMapKeys = people.keySet();
+        for(int key : peopleMapKeys)
+        {
+            ArrayList<Relationship> toRemove = new ArrayList<Relationship>();
+            for(Relationship rel : people.get(key).getRelations())
+            {
+                if(rel.getIDRelationType()==typeID)
+                {
+                    toRemove.add(rel);
+                }
+            }
+            for(Relationship rel : toRemove)
+            {
+                people.get(key).removeRelationship(rel);
+            }
+        }
     }
     
     /***
@@ -217,7 +316,7 @@ public class Controller {
     }
     
     /***
-     * Goes to the indicated people and changes the RelationshipType
+     * Goes to the indicated people and changes the RelationshipType from relIDCurr to relIDToChange
      * 
      * @param personID
      * @param secondPersonID
@@ -227,6 +326,51 @@ public class Controller {
     public static void editRelationship(int personID, int secondPersonID,
             int relIDCurr, int relIDToChange)
     {
+        for(Relationship rel : people.get(personID).getRelations())
+        {
+            if(rel.getIDPerson2() == secondPersonID && rel.getIDRelationType() == relIDCurr)
+            {
+                rel.setIDRelationType(relIDToChange);
+            }
+        }
         
+        for(Relationship rel : people.get(secondPersonID).getRelations())
+        {
+            if(rel.getIDPerson2() == personID && rel.getIDRelationType() == relIDCurr)
+            {
+                rel.setIDRelationType(relIDToChange);
+            }
+        }
+    }
+
+    /**
+     * PRECONDITION:
+     * That person should exist, will return null otherwise
+     */
+    public static Person getPersonUnderID(int personID)
+    {
+        return people.get(personID);
+    }
+    
+    public static RelationshipType getRelationshipTypeUnderID(int relID)
+    {
+        return typeMap.get(relID);
+    }
+
+    public static void addReflexiveRelationshipType(String typeName,
+            String maleType, String femaleType, String maleInverse, String femaleInverse)
+    {
+        Set<Integer> keys = typeMap.keySet();
+        int ID = -1;
+        for(int i=0; ID == -1; i++)
+        {
+            if(!keys.contains(i))
+            {
+                ID =i;
+                break;
+            }
+        }
+        if(!typeMap.containsValue(new RelationshipType(typeName, maleType, femaleType, maleInverse, femaleInverse, ID)))
+            typeMap.put(ID, new RelationshipType(typeName, maleType, femaleType, maleInverse, femaleInverse, ID));
     }
 }

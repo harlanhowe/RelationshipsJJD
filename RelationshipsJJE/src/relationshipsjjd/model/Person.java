@@ -64,18 +64,41 @@ public class Person {
     }
     
     /***
-     * Returns one string that is made up of all of this person's relationships
-     * 
+     * Returns one string that is made up of all of this person's relationships in the form of:
+     * Josh Kassab:
+     *      has a Teacher named Harlan Howe
      * @return
      */
     @Override
     public String toString()
     {
-        String theString = "";
-        for(int i=0; i<relationships.size(); i++)
+        String theString = this.getName() + ":\n";
+        for(Relationship rel : relationships)
         {
-            theString.concat(relationships.get(i).toString() + "\n");
+            theString += rel.shorthandToString() + "\n";
         }
         return theString;
+    }
+
+    public String getName()
+    {
+        return firstName + " "+lastName;
+    }
+    
+    /**
+     * Removes this relationship from the ArrayList<Relationship> relationships
+     * @param relationship
+     */
+    public void removeRelationship(Relationship relationship)
+    {
+        
+    }
+    /**
+     * So, this should return a string saying lastName, firstName, isMale
+     * @return
+     */
+    public String getSaveDescription()
+    {
+        return "";
     }
 }

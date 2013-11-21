@@ -20,6 +20,8 @@ public class RelationshipsJJD {
     public static void main(String[] args)
     {
         Controller.init();
+        Controller.addReflexiveRelationshipType("couple", "boyfriend", "girlfriend", "boyfriend", "girlfriend");
+        Controller.savePeepsAndRelations();
         //View.displayMenuChoices();
     }
 }

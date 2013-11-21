@@ -13,7 +13,7 @@ import relationshipsjjd.model.RelationshipType;
 
 public class Controller {
     
-    private static ArrayList<Person> people;
+    private static HashMap<Integer, Person> people;
     private static HashMap<Integer, RelationshipType> typeMap;
     
     /***
@@ -28,9 +28,15 @@ public class Controller {
             Scanner peopleScanner = new Scanner(peopleFile);
             while(peopleScanner.hasNext())
             {
-                int ID = peopleScanner.nextInt();
-                //Still trying to figure out how to get a separate first/last name
-                //String firstName = peopleScanner.next(String.format("%s", ID));
+                String infoString = peopleScanner.nextLine();
+                String[] items = infoString.split("\t");
+                int IDNum = Integer.parseInt(items[0]);
+                String firstName = items[1];
+                String lastName = items[2];
+                boolean isMale = Boolean.parseBoolean(items[3]);
+                
+                Person tempPerson = new Person(firstName, lastName, IDNum, isMale);
+                people.put(IDNum, tempPerson);
             }
         }
         catch(FileNotFoundException fnfe)
@@ -70,8 +76,17 @@ public class Controller {
      */
     public static void addPerson(String firstName, String lastName, boolean isMale)
     {
-        int ID = people.size();
-        people.add(new Person(firstName, lastName, ID, isMale));
+        Set<Integer> keys = people.keySet();
+        int ID = 0;
+        for(int i=0; i !=-1; i++)
+        {
+            if(!keys.contains(i))
+            {
+                ID =i;
+                break;
+            }
+        }
+        people.put(ID, new Person(firstName, lastName, ID, isMale));
     }
     
     /***

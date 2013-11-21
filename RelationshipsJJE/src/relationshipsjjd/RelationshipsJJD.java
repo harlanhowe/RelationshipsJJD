@@ -4,6 +4,8 @@
  */
 package relationshipsjjd;
 
+import relationshipsjjd.view.View;
+
 /**
  *
  * @author kadmin
@@ -15,6 +17,6 @@ public class RelationshipsJJD {
      */
     public static void main(String[] args) 
     {
-        // TODO code application logic here
+        View.displayMenuChoices();
     }
 }

@@ -30,6 +30,7 @@ public class Person {
         lastName=personLastName;
         ID = personID;
         this.isMale = isMale;
+        relationships = new ArrayList<Relationship>();
     }
     
     /***

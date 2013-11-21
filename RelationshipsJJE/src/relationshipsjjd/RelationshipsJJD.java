@@ -4,6 +4,7 @@
  */
 package relationshipsjjd;
 
+import relationshipsjjd.controller.Controller;
 import relationshipsjjd.view.View;
 
 /**
@@ -18,6 +19,7 @@ public class RelationshipsJJD {
      */
     public static void main(String[] args)
     {
-        View.displayMenuChoices();
+        Controller.init();
+        //View.displayMenuChoices();
     }
 }

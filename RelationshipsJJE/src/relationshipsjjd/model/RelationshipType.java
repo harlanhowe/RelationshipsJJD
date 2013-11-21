@@ -30,6 +30,11 @@ public class RelationshipType {
         this.inverseID = inverseID;
     }
     
+    public String getSaveDescription()
+    {
+        return relationshipName+"\t"+maleType+"\t"+femaleType+"\t"+maleInverse+"\t"+femaleInverse+"\t"+inverseID;
+    }
+    
     public int getInverseID()
     {
         return inverseID;

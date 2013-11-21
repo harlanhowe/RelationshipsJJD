@@ -30,6 +30,11 @@ public class Relationship {
                 this.IDRelationType, this.IDPerson2);
     }
     
+    public String getSaveDescription()
+    {
+        return IDPerson1 + "\t"+IDPerson2+"\t"+IDRelationType;
+    }
+    
     public int getIDPerson1()
     {
         return IDPerson1;

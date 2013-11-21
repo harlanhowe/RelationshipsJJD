@@ -22,6 +22,9 @@ public class Controller {
      */
     public static void init()
     {
+        people = new HashMap<Integer, Person>();
+        typeMap = new HashMap<Integer, RelationshipType>();
+        
         File peopleFile = new File("people.dat");
         try
         {
@@ -45,10 +48,28 @@ public class Controller {
             throw new RuntimeException();
         }
         
+        System.out.println(people);
+        
         File relTypeFile = new File("relTypes.dat");
         try
         {
             Scanner relTypeScanner = new Scanner(relTypeFile);
+            while(relTypeScanner.hasNext())
+            {
+                String infoString = relTypeScanner.nextLine();
+                String[] items = infoString.split("\t");
+                
+                int ID = Integer.parseInt(items[0]);
+                String typeName = items[1];
+                String maleType = items[2];
+                String femaleType = items[3];
+                String maleInverse = items[4];
+                String femaleInverse = items[5];
+                int invertID = Integer.parseInt(items[6]);
+                
+                RelationshipType rel = new RelationshipType(typeName, maleType, femaleType, maleInverse, femaleInverse, invertID);
+                typeMap.put(ID, rel);
+            }
         }
         catch(FileNotFoundException fnfe)
         {
@@ -60,6 +81,11 @@ public class Controller {
         try
         {
             Scanner relScanner = new Scanner(relFile);
+            while(relScanner.hasNext())
+            {
+                String infoString = relScanner.nextLine();
+                String[] items = infoString.split("\t");
+            }
         }
         catch(FileNotFoundException fnfe)
         {

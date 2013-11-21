@@ -167,6 +167,11 @@ public class Controller {
         typeMap.remove(typeID);
     }
     
+    public static void removePerson(int personID)
+    {
+        people.remove(people.get(personID));
+    }
+    
     /***
      * Changes some parameter of a certain relationship type.
      * 

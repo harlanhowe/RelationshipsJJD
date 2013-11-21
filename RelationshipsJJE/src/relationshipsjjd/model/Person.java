@@ -1,36 +1,40 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 package relationshipsjjd.model;
 
 import java.util.ArrayList;
 
 /**
- *
+ * 
  * @author joshua.kassab
  */
-public class Person 
-{
-    private String name;
+public class Person {
+    
+    private String firstName;
+    private String lastName;
     private ArrayList<Relationship> relationships;
     private int ID;
     boolean isMale;
     
     /***
-     * Constructor.  Is given a person's name and ID
+     * Constructor. Is given a person's name and ID
+     * 
      * @param personName
-     * @param personID 
+     * @param personID
      */
-    public Person(String personName, int personID)
+    public Person(String personFirstName, String personLastName, int personID)
     {
-        name=personName;
-        ID=personID;
+        firstName= personFirstName;
+        lastName=personLastName;
+        ID = personID;
     }
     
     /***
      * Returns a list of relationships pertaining to this person
-     * @return 
+     * 
+     * @return
      */
     public ArrayList<Relationship> getRelations()
     {
@@ -39,7 +43,8 @@ public class Person
     
     /***
      * Returns this person's ID
-     * @return 
+     * 
+     * @return
      */
     public int getID()
     {
@@ -47,12 +52,28 @@ public class Person
     }
     
     /***
+     * Adds a relationship to the list of relations
+     * 
+     * @param relation
+     */
+    public void addRelationship(Relationship relation)
+    {
+        relationships.add(relation);
+    }
+    
+    /***
      * Returns one string that is made up of all of this person's relationships
-     * @return 
+     * 
+     * @return
      */
     @Override
     public String toString()
     {
-        return "";
+        String theString = "";
+        for(int i=0; i<relationships.size(); i++)
+        {
+            theString.concat(relationships.get(i).toString() + "\n");
+        }
+        return theString;
     }
 }

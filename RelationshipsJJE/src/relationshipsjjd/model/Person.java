@@ -24,11 +24,12 @@ public class Person {
      * @param personName
      * @param personID
      */
-    public Person(String personFirstName, String personLastName, int personID)
+    public Person(String personFirstName, String personLastName, int personID, boolean isMale)
     {
         firstName= personFirstName;
         lastName=personLastName;
         ID = personID;
+        this.isMale = isMale;
     }
     
     /***

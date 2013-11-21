@@ -68,10 +68,10 @@ public class Controller {
      * @param firstName
      * @param lastName 
      */
-    public static void addPerson(String firstName, String lastName)
+    public static void addPerson(String firstName, String lastName, boolean isMale)
     {
         int ID = people.size();
-        people.add(new Person(firstName, lastName, ID));
+        people.add(new Person(firstName, lastName, ID, isMale));
     }
     
     /***
@@ -121,9 +121,9 @@ public class Controller {
         }
         
         RelationshipType relTypeNorm = new RelationshipType(typeName, maleType, femaleType, maleInverse, 
-                femaleInverse, keys[0]);
+                femaleInverse, keys[1]);
         RelationshipType relTypeInvert = new RelationshipType(inverseType, maleInverse, femaleInverse, 
-                maleType, femaleType, keys[1]);
+                maleType, femaleType, keys[0]);
         typeMap.put(keys[0], relTypeNorm);
         typeMap.put(keys[1], relTypeInvert);
     }
@@ -163,11 +163,16 @@ public class Controller {
      * @param maleInverse
      * @param femaleInverse
      */
-    public static void editRelationshipType(int typeID, String newTypeName,
+    public static void editRelationshipType(int typeID, String typeName,
             String inverseType, String maleType, String femaleType,
             String maleInverse, String femaleInverse)
     {
-        
+        RelationshipType relTypeNorm = new RelationshipType(typeName, maleType, femaleType, maleInverse, 
+                femaleInverse, typeMap.get(typeMap).getInverseID());
+        RelationshipType relTypeInvert = new RelationshipType(inverseType, maleInverse, femaleInverse, 
+                maleType, femaleType, typeID);
+        typeMap.put(typeID, relTypeNorm);
+        typeMap.put(relTypeNorm.getInverseID(), relTypeInvert);
     }
     
     /***

@@ -27,7 +27,7 @@ public class View
                 System.out.println("What is the new person's name?");
                 Scanner input = new Scanner(System.in);
                 String nameInput = input.nextLine();
-                System.out.println("What is %d's gender", nameInput);
+                System.out.println("What is" + nameInput + "'s gender");
             }
             
             return null;

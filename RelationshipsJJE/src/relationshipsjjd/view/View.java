@@ -54,7 +54,7 @@ public class View
                 if (allowCancel && selection == 0)
                     return CANCEL_OPTION;
                 
-                if (selection<1 || selection>options.size())
+                if (selection < 1 || selection > options.size())
                     System.out.println("That number is out of range. Please try again.");
                 
                 else
@@ -86,16 +86,16 @@ public class View
     {
         String optionList = "(";
         
-        for (int i =0; i<options.length; i++)
+        for (int i = 0; i < options.length; i++)
         {
-            optionList+= options[i];
+            optionList += options[i];
             
-            if (i<options.length-1)
-                optionList+=", ";
+            if (i < options.length - 1)
+                optionList += ", ";
         }
         
-        optionList+=")";
-        System.out.print(prompt+" "+optionList+" ");
+        optionList += ")";
+        System.out.print(prompt + " " + optionList + " ");
         
         boolean goodAnswer=false;
         
@@ -117,48 +117,51 @@ public class View
         
     }
 
-public static class DummyClass 
-{
-    private int id;
-    private String name;
-    private Boolean isGood;
-    private static int lastID= 0; // this variable is "static" shared between all
-                               // DummyClass instances. It is what we will use
-                               // to make sure they have unique ids....
-    
-    public DummyClass()
+    public static class DummyClass
     {
-        name = "";
-        isGood = true;
-        id = lastID + 1; 
-        lastID++; // lastID is the highest-valued id for any DummyClass instance
-                  // created so far in this program.
+        private int id;
+        private String name;
+        private Boolean isGood;
+        private static int lastID = 0; // this variable is "static" shared between all
+                                   // DummyClass instances. It is what we will use
+                                   // to make sure they have unique ids....
+
+        public DummyClass()
+        {
+            name = "";
+            isGood = true;
+            id = lastID + 1; 
+            lastID++; // lastID is the highest-valued id for any DummyClass instance
+                      // created so far in this program.
+        }
+
+        /**
+         * overloaded constructor that takes a tab-delimited line of format
+         * int-tab-String-tab-boolean and builds an instance of this class with
+         * corresponding values.
+         * Note: assumes that duplicate ids don't exist from previous new DummyClass
+         * objects - if you are reading a file, make sure that any list of 
+         * DummyClass items is empty first, and that there aren't duplicate ids.
+         * @param inputString - a single line string of the prescribed format.
+         */
+        public DummyClass(String inputString)
+        {
+            String[] part = inputString.split("\t"); // splits this string into an
+                                                     // array of smaller strings.
+                                                     // The splits happen where
+                                                     // there are tabs (\t).
+            // Note: I should catch NumberFormatExceptions here... I'll do
+            //  that right after they announce the lottery numbers.
+            
+            id = Integer.parseInt(part[0]);
+            
+            if (id>lastID)
+                lastID = id;
+            
+            name = part[1];
+            isGood = Boolean.parseBoolean(part[2]);
+        }
     }
-    
-    /**
-     * overloaded constructor that takes a tab-delimited line of format
-     * int-tab-String-tab-boolean and builds an instance of this class with
-     * corresponding values.
-     * Note: assumes that duplicate ids don't exist from previous new DummyClass
-     * objects - if you are reading a file, make sure that any list of 
-     * DummyClass items is empty first, and that there aren't duplicate ids.
-     * @param inputString - a single line string of the prescribed format.
-     */
-    public DummyClass(String inputString)
-    {
-        String[] part = inputString.split("\t"); // splits this string into an
-                                                 // array of smaller strings.
-                                                 // The splits happen where
-                                                 // there are tabs (\t).
-        // Note: I should catch NumberFormatExceptions here... I'll do
-        //  that right after they announce the lottery numbers.
-        id = Integer.parseInt(part[0]);
-        if (id>lastID)
-            lastID = id;
-        name = part[1];
-        isGood = Boolean.parseBoolean(part[2]);
-    }
-}
 
 //	public static void displayMenuChoices()
 //        {
@@ -189,4 +192,5 @@ public static class DummyClass
 //            return null;
 //            
 //        }
+
 }

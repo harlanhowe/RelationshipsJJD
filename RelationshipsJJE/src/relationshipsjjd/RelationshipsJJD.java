@@ -4,6 +4,10 @@
  */
 package relationshipsjjd;
 
+
+import relationshipsjjd.controller.Controller;
+import relationshipsjjd.view.View;
+
 /**
  * 
  * @author kadmin
@@ -14,7 +18,11 @@ public class RelationshipsJJD {
      * @param args
      *            the command line arguments
      */
-    public static void main(String[] args){
-        // TODO code application logic here
+
+    public static void main(String[] args)
+    {
+        Controller.init();
+        Controller.addReflexiveRelationshipType("couple", "boyfriend", "girlfriend", "boyfriend", "girlfriend");
+        Controller.savePeepsAndRelations();
     }
 }

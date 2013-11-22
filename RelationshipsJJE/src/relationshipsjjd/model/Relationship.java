@@ -1,5 +1,7 @@
 package relationshipsjjd.model;
 
+import relationshipsjjd.controller.Controller;
+
 public class Relationship {
     
     private int IDPerson1;
@@ -20,14 +22,36 @@ public class Relationship {
     }
     
     /**
-     * Creates the string that will display relationships ie. --> John has a
-     * Teacher named Harlan
+     * Creates the string that will display relationships 
+     * ie. --> John has aTeacher named Harlan
      */
     @Override
     public String toString()
     {
-        return String.format("%s has a %s named %s", this.IDPerson1,
-                this.IDRelationType, this.IDPerson2);
+        return String.format("%s has a %s named %s", Controller.getPersonUnderID(IDPerson1).getName(),
+                Controller.getRelationshipTypeUnderID(IDRelationType).getNameForInverse(Controller.getPersonUnderID(IDPerson2).isMale), Controller.getPersonUnderID(IDPerson2).getName());
+    }
+    
+    /**
+     * Short hand version of toString, use this in a situation like below
+     * John Churay
+     *      has a Teacher named Harlan Howe
+     * @return
+     */
+    public String shorthandToString()
+    {
+        return String.format("\thas a %s named %s", Controller.getRelationshipTypeUnderID(IDRelationType).getNameForInverse(Controller.getPersonUnderID(IDPerson2).isMale), 
+                Controller.getPersonUnderID(IDPerson2).getName());
+    }
+    
+    /**
+     * This returns the string that should setup the save file
+     * in the save method the first ID should be printed first
+     * @return
+     */
+    public String getSaveDescription()
+    {
+        return IDPerson1 + "\t"+IDPerson2+"\t"+IDRelationType+"\n";
     }
     
     public int getIDPerson1()

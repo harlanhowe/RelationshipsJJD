@@ -86,8 +86,8 @@ public class Controller {
             {
                 String infoString = relScanner.nextLine();
                 String[] items = infoString.split("\t");
-                int person1ID = Integer.parseInt(items[1]);
-                int person2ID = Integer.parseInt(items[2]);
+                int person1ID = Integer.parseInt(items[2]);
+                int person2ID = Integer.parseInt(items[1]);
                 int relType   = Integer.parseInt(items[3]);
                 if(people.containsKey(person1ID) && people.containsKey(person2ID))
                 {
@@ -361,6 +361,13 @@ public class Controller {
             String maleType, String femaleType, String maleInverse, String femaleInverse)
     {
         Set<Integer> keys = typeMap.keySet();
+        
+        for(int key : keys)
+        {
+            if(typeMap.get(key).equals(new RelationshipType(typeName, maleType, femaleType, maleInverse, femaleInverse, key)))
+                return;
+        }
+        
         int ID = -1;
         for(int i=0; ID == -1; i++)
         {
@@ -370,7 +377,7 @@ public class Controller {
                 break;
             }
         }
-        if(!typeMap.containsValue(new RelationshipType(typeName, maleType, femaleType, maleInverse, femaleInverse, ID)))
-            typeMap.put(ID, new RelationshipType(typeName, maleType, femaleType, maleInverse, femaleInverse, ID));
+        
+        typeMap.put(ID, new RelationshipType(typeName, maleType, femaleType, maleInverse, femaleInverse, ID));
     }
 }

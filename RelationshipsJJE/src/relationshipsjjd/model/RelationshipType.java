@@ -70,4 +70,22 @@ public class RelationshipType {
         return femaleInverse;
     }
     
+    public boolean equals(Object obj)
+    {
+        if(!(obj instanceof RelationshipType))
+            return false;
+        if(obj.toString().equals(this.toString()))
+            return true;
+        return true;
+    }
+    
+    /**
+     * Hashcodes, gotta hate em
+     * @return
+     */
+    public int hashcode()
+    {
+        return this.getSaveDescription().hashCode();
+    }
+    
 }

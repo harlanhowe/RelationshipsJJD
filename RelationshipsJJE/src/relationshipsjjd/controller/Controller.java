@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -15,8 +16,8 @@ import relationshipsjjd.model.RelationshipType;
 
 public class Controller {
     
-    private static HashMap<Integer, Person> people;
-    private static HashMap<Integer, RelationshipType> typeMap;
+    private static Map<Integer, Person> people;
+    private static Map<Integer, RelationshipType> typeMap;
     
     /***
      * Reads through the files to get stored data Looks for people, then
@@ -218,7 +219,7 @@ public class Controller {
     }
     
     /***
-     * Creates a new RelationshipType, "typeName"
+     * Creates a new RelationshipType called "typeName" and the opposite Type "inverseType"
      * 
      * @param typeName
      * @param inverseType
@@ -232,6 +233,7 @@ public class Controller {
             String femaleInverse)
     {
         Set<Integer> mapKeys = typeMap.keySet();
+        
         int numOfKeysFound = 0;
         int[] keys = new int[2];
         for(int key = 0; numOfKeysFound < 2; key++)
@@ -247,6 +249,8 @@ public class Controller {
                 femaleInverse, keys[1]);
         RelationshipType relTypeInvert = new RelationshipType(inverseType, maleInverse, femaleInverse, 
                 maleType, femaleType, keys[0]);
+        
+        
         typeMap.put(keys[0], relTypeNorm);
         typeMap.put(keys[1], relTypeInvert);
     }
@@ -352,11 +356,23 @@ public class Controller {
         return people.get(personID);
     }
     
+    /**
+     * PRECONDITION:
+     * That relationship should exist, will return null otherwise
+     */
     public static RelationshipType getRelationshipTypeUnderID(int relID)
     {
         return typeMap.get(relID);
     }
 
+    /**
+     * Creates a new RelationshipType that has an inverse which is the same.
+     * @param typeName
+     * @param maleType
+     * @param femaleType
+     * @param maleInverse
+     * @param femaleInverse
+     */
     public static void addReflexiveRelationshipType(String typeName,
             String maleType, String femaleType, String maleInverse, String femaleInverse)
     {

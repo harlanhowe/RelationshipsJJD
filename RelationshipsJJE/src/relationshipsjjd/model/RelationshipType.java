@@ -85,7 +85,7 @@ public class RelationshipType {
      */
     public int hashcode()
     {
-        return this.getSaveDescription().hashCode();
+        return this.inverseID;
     }
     
 }

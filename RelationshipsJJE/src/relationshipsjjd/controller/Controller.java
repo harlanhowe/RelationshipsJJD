@@ -66,6 +66,7 @@ public class Controller {
             System.out.println("File not found");
             throw new RuntimeException();
         }
+        System.out.println(people);
     }
     
     /***

@@ -40,7 +40,7 @@ public class Relationship {
      */
     public String shorthandToString()
     {
-        return String.format("\thas a %s named %s", Controller.getRelationshipTypeUnderID(IDRelationType).getNameForInverse(Controller.getPersonUnderID(IDPerson2).isMale), 
+        return String.format("\thas a %s named %s", Controller.getRelationshipTypeUnderID(IDRelationType).getNameForPerson(Controller.getPersonUnderID(IDPerson2).isMale), 
                 Controller.getPersonUnderID(IDPerson2).getName());
     }
     

@@ -87,8 +87,8 @@ public class Controller {
             {
                 String infoString = relScanner.nextLine();
                 String[] items = infoString.split("\t");
-                int person1ID = Integer.parseInt(items[2]);
-                int person2ID = Integer.parseInt(items[1]);
+                int person1ID = Integer.parseInt(items[1]);
+                int person2ID = Integer.parseInt(items[2]);
                 int relType   = Integer.parseInt(items[3]);
                 if(people.containsKey(person1ID) && people.containsKey(person2ID))
                 {
@@ -136,7 +136,7 @@ public class Controller {
                 
                 for(int key : keys)
                 {
-                    peopleWriter.write(key + "\t" + people.get(key).getSaveDescription());
+                    peopleWriter.write(key + "\t" + people.get(key).getSaveDescription()+"\n");
                 }
                 peopleWriter.close();
             }

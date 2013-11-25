@@ -97,6 +97,7 @@ public class Person {
     {
         relationships.remove(relationship);
     }
+    
     /**
      * So, this should return a string saying lastName, firstName, isMale
      * @return
@@ -104,7 +105,7 @@ public class Person {
     public String getSaveDescription()
     {
         String theString = new String();
-        theString += lastName + ", " + firstName + ", " + isMale;
+        theString += lastName + "/t" + firstName + "/t" + isMale;
         return theString;
     }
 }

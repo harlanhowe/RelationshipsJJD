@@ -4,7 +4,6 @@
  */
 package relationshipsjjd;
 
-
 import relationshipsjjd.controller.Controller;
 import relationshipsjjd.view.View;
 
@@ -23,5 +22,6 @@ public class RelationshipsJJD {
     {
         Controller.init();
         Controller.savePeepsAndRelations();
+        View.Run();
     }
 }

@@ -4,6 +4,7 @@
  */
 package relationshipsjjd;
 
+
 import relationshipsjjd.controller.Controller;
 import relationshipsjjd.view.View;
 
@@ -17,9 +18,10 @@ public class RelationshipsJJD {
      * @param args
      *            the command line arguments
      */
+
     public static void main(String[] args)
     {
-        //View.displayMenuChoices();
         Controller.init();
+        Controller.savePeepsAndRelations();
     }
 }

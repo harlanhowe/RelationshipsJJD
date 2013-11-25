@@ -30,6 +30,22 @@ public class RelationshipType {
         this.inverseID = inverseID;
     }
     
+    @Override
+    public String toString()
+    {
+        return String.format("%s: \n\tMales are called: %s \n\tFemales are called: %s \n\tMales related to are called: %s \n\tFemales related to are called: %s", relationshipName, maleType, femaleType, maleInverse, femaleInverse);
+    }
+    
+    /**
+     * This returns the string that should setup the save file
+     * in the save method the first ID should be printed first
+     * @return
+     */
+    public String getSaveDescription()
+    {
+        return relationshipName+"\t"+maleType+"\t"+femaleType+"\t"+maleInverse+"\t"+femaleInverse+"\t"+inverseID+"\n";
+    }
+    
     public int getInverseID()
     {
         return inverseID;
@@ -52,6 +68,24 @@ public class RelationshipType {
         if (isMale)
             return maleInverse;
         return femaleInverse;
+    }
+    
+    public boolean equals(Object obj)
+    {
+        if(!(obj instanceof RelationshipType))
+            return false;
+        if(obj.toString().equals(this.toString()))
+            return true;
+        return true;
+    }
+    
+    /**
+     * Hashcodes, gotta hate em
+     * @return
+     */
+    public int hashcode()
+    {
+        return this.inverseID;
     }
     
 }

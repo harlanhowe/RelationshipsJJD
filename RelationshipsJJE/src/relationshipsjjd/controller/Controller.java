@@ -136,7 +136,7 @@ public class Controller {
                 
                 for(int key : keys)
                 {
-                    peopleWriter.write(key + "\t" + people.get(key).getSaveDescription());
+                    peopleWriter.write(key + "\t" + people.get(key).getSaveDescription()+"\n");
                 }
                 peopleWriter.close();
             }

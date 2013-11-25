@@ -80,6 +80,10 @@ public class Person {
         return theString;
     }
 
+    /***
+     * Returns the person's name
+     * @return 
+     */
     public String getName()
     {
         return firstName + " "+lastName;
@@ -99,6 +103,8 @@ public class Person {
      */
     public String getSaveDescription()
     {
-        return "";
+        String theString = new String();
+        theString += lastName + ", " + firstName + ", " + isMale;
+        return theString;
     }
 }

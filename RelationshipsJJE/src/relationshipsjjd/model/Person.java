@@ -95,7 +95,7 @@ public class Person {
      */
     public void removeRelationship(Relationship relationship)
     {
-        
+        relationships.remove(relationship);
     }
     /**
      * So, this should return a string saying lastName, firstName, isMale

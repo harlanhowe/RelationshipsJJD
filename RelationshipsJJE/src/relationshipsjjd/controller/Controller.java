@@ -175,7 +175,6 @@ public class Controller {
             System.out.println("Check out savePeepsAndRelations \nYEA!  We broke stuffs when creating new files!");
             return false;
         }
-        System.out.println(people);
     }
     
     /***

@@ -95,6 +95,8 @@ public class Person {
      */
     public void removeRelationship(Relationship relationship)
     {
+        if(relationships.contains(relationship))
+            System.out.println("Ya I have it "+relationship);
         relationships.remove(relationship);
     }
     /**
@@ -104,7 +106,7 @@ public class Person {
     public String getSaveDescription()
     {
         String theString = new String();
-        theString += lastName + ", " + firstName + ", " + isMale;
+        theString += lastName + "\t" + firstName + "\t" + isMale;
         return theString;
     }
 }

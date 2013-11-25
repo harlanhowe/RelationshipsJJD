@@ -80,6 +80,10 @@ public class Person {
         return theString;
     }
 
+    /***
+     * Returns the person's name
+     * @return 
+     */
     public String getName()
     {
         return firstName + " "+lastName;
@@ -91,7 +95,9 @@ public class Person {
      */
     public void removeRelationship(Relationship relationship)
     {
-        
+        if(relationships.contains(relationship))
+            System.out.println("Ya I have it "+relationship);
+        relationships.remove(relationship);
     }
     /**
      * So, this should return a string saying lastName, firstName, isMale
@@ -99,6 +105,8 @@ public class Person {
      */
     public String getSaveDescription()
     {
-        return "";
+        String theString = new String();
+        theString += lastName + "\t" + firstName + "\t" + isMale;
+        return theString;
     }
 }

@@ -87,8 +87,8 @@ public class Controller {
             {
                 String infoString = relScanner.nextLine();
                 String[] items = infoString.split("\t");
-                int person1ID = Integer.parseInt(items[2]);
-                int person2ID = Integer.parseInt(items[1]);
+                int person1ID = Integer.parseInt(items[1]);
+                int person2ID = Integer.parseInt(items[2]);
                 int relType   = Integer.parseInt(items[3]);
                 if(people.containsKey(person1ID) && people.containsKey(person2ID))
                 {
@@ -127,20 +127,19 @@ public class Controller {
             if(!relFile.exists())
                 relFile.createNewFile();
             
-            //Commented out until we get the getSaveDescription() done for this one
-//            {
-//                //The people will be written within this area, indented to have the formatting look nice
-//                //Also garbage collection will happen faster and thus have less memory use
-//                
-//                PrintWriter peopleWriter = new PrintWriter(peopleFile);
-//                Set<Integer> keys = people.keySet();
-//                
-//                for(int key : keys)
-//                {
-//                    peopleWriter.write(key + "\t" + people.get(key).getSaveDescription());
-//                }
-//                peopleWriter.close();
-//            }
+            {
+                //The people will be written within this area, indented to have the formatting look nice
+                //Also garbage collection will happen faster and thus have less memory use
+                
+                PrintWriter peopleWriter = new PrintWriter(peopleFile);
+                Set<Integer> keys = people.keySet();
+                
+                for(int key : keys)
+                {
+                    peopleWriter.write(key + "\t" + people.get(key).getSaveDescription()+"\n");
+                }
+                peopleWriter.close();
+            }
             
             
             {
@@ -296,6 +295,11 @@ public class Controller {
         }
     }
     
+    public static void removePerson(int personID)
+    {
+        people.remove(people.get(personID));
+    }
+    
     /***
      * Changes some parameter of a certain relationship type.
      * 
@@ -395,5 +399,14 @@ public class Controller {
         }
         
         typeMap.put(ID, new RelationshipType(typeName, maleType, femaleType, maleInverse, femaleInverse, ID));
+    }
+
+    public static void printInfos()
+    {
+        Set<Integer> keys = people.keySet();
+        for(Integer key : keys)
+        {
+            System.out.println(people.get(key));
+        }
     }
 }

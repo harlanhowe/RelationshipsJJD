@@ -21,6 +21,8 @@ public class RelationshipsJJD {
     public static void main(String[] args)
     {
         Controller.init();
+        Controller.removeRelationship(6, 5, 11);
+        Controller.printInfos();
         Controller.savePeepsAndRelations();
         View.Run();
     }

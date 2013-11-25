@@ -18,10 +18,10 @@ public class View
      * @param allowCancel - whether the user is given the option to cancel
      * @return - the number of the menu option chosen, or CANCEL_OPTION if canceling
      */
-    public int displayMenuAndGetResponse(String title, ArrayList<String> options, String prompt, boolean allowCancel)
+    public static int displayMenuAndGetResponse(String title, ArrayList<String> options, String prompt, boolean allowCancel)
     {
         if (title != null)
-            System.out.println("--------------------------------\n"+title);
+            System.out.println("--------------------------------\n" + title);
         
         System.out.println("--------------------------------");
         
@@ -68,7 +68,7 @@ public class View
             
         } while (!goodAnswer);
         
-        return selection -1;
+        return selection - 1;
     }
     
     /**
@@ -163,34 +163,45 @@ public class View
         }
     }
 
-//	public static void displayMenuChoices()
+    public static void Run()
+    {
+        String title = "Relationships Keeper!";
+
+        ArrayList<String> options = new ArrayList<String>();
+        options.add("Add a new person");
+        options.add("Add a new relationship");
+        options.add("Add a new relationship type");
+        options.add("Delete a relationship");
+        options.add("Delete a relationship type");
+        options.add("Edit a relationship");
+        options.add("Edit a relationship type");
+
+        String prompt = "Type a number 1-7";
+
+        boolean allowCancel = false;
+
+        int idChosen = displayMenuAndGetResponse(title, options, prompt, allowCancel);
+//        switch(idChosen)
 //        {
-//            System.out.println("Would you like to:\n");
-//            System.out.println("add a new person?");
-//            System.out.println("add a new relationship?");
-//            System.out.println("add a new relationship type?");
-//            System.out.println("delete a relationship?");
-//            System.out.println("delete a relationship type?");
-//            System.out.println("edit a relationship?");
-//            System.out.println("edit a relationship type?\n");
-//            
-//            Scanner input = new Scanner(System.in);
-//            String choiceInput = input.nextLine();
+//            case 1:
+//                addPerson();
+//                break;
 //        }
-//        
-//        public String addPerson(String choiceInput)
-//        {
-//            if (choiceInput == "add a new person")
-//            {
-//                System.out.println("What is the new person's name?");
-//                Scanner input = new Scanner(System.in);
-//                String nameInput = input.nextLine();
-//                System.out.println("What is" + nameInput + "'s gender?");
-//                
-//            }
-//            
-//            return null;
-//            
-//        }
+    }
+    
+    public String addPerson(String choiceInput)
+    {
+        if (choiceInput == "add a new person")
+        {
+            System.out.println("What is the new person's name?");
+            Scanner input = new Scanner(System.in);
+            String nameInput = input.nextLine();
+            System.out.println("What is" + nameInput + "'s gender?");
+
+        }
+
+        return null;
+
+    }
 
 }

@@ -84,4 +84,15 @@ public class Relationship {
         IDRelationType = iDRelationType;
     }
     
+    public int hashCode()
+    {
+        return this.toString().hashCode();
+    }
+    
+    @Override
+    public boolean equals(Object obj)
+    {
+        return obj.toString().equals(this.toString());
+    }
+    
 }

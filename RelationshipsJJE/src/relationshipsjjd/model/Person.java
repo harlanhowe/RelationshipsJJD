@@ -99,6 +99,7 @@ public class Person {
             System.out.println("Ya I have it "+relationship);
         relationships.remove(relationship);
     }
+    
     /**
      * So, this should return a string saying lastName, firstName, isMale
      * @return

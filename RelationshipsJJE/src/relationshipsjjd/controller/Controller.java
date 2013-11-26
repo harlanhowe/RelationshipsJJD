@@ -265,7 +265,7 @@ public class Controller {
             int typeID)
     {
         people.get(personID).removeRelationship(new Relationship(personID, secondPersonID, typeID));
-        people.get(secondPersonID).removeRelationship(new Relationship(secondPersonID, personID, typeID));
+        people.get(secondPersonID).removeRelationship(new Relationship(secondPersonID, personID, typeMap.get(typeID).getInverseID()));
     }
     
     /***
@@ -401,6 +401,9 @@ public class Controller {
         typeMap.put(ID, new RelationshipType(typeName, maleType, femaleType, maleInverse, femaleInverse, ID));
     }
 
+    /***
+     * Prints out a list of People's names
+     */
     public static void printInfos()
     {
         Set<Integer> keys = people.keySet();
@@ -408,5 +411,33 @@ public class Controller {
         {
             System.out.println(people.get(key));
         }
+    }
+    
+    /***
+     * Returns the map of People
+     * @return 
+     */
+    public static Map<Integer, Person> getPeople()
+    {
+        return people;
+    }
+    
+    /***
+     * Accepts a person's ID and returns that person's relationships
+     * @param ID
+     * @return 
+     */
+    public static ArrayList<Relationship> getRelationships(int ID)
+    {
+       return people.get(ID).getRelations();
+    }
+    
+    /***
+     * returns all relationship types
+     * @return 
+     */
+    public static Map<Integer, RelationshipType> getRelationshipTypes()
+    {
+        return typeMap;
     }
 }

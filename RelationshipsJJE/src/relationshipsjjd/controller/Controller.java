@@ -314,6 +314,11 @@ public class Controller {
         people.remove(people.get(personID));
     }
     
+    public static void editPerson(int personID, String firstName, String lastName, boolean isMale)
+    {
+        people.get(personID).setInfo(firstName, lastName, isMale);
+    }
+    
     /***
      * Changes some parameter of a certain relationship type.
      * Takes in the ID of an existing RelType and changes the parameters of the RelType so that it has the given info

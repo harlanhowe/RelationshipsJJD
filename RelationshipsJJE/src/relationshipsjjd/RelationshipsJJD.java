@@ -18,11 +18,12 @@ public class RelationshipsJJD {
      * @param args
      *            the command line arguments
      */
-
+//        Controller.editRelationshipType(1, "spouse", "spouse", "husband", "wife", "husband", "wife");
+    //student   student student teacher teacher
     public static void main(String[] args)
     {
         Controller.init();
-        Controller.removeRelationsihpType(0);
+        
         Controller.savePeepsAndRelations();
     }
 }

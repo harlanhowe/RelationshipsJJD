@@ -29,6 +29,20 @@ public class Controller {
         typeMap = new HashMap<Integer, RelationshipType>();
         
         File peopleFile = new File("people.dat");
+        File relTypeFile = new File("relTypes.dat");
+        File relFile = new File("relationships.dat");
+        
+        try
+        {
+            if(!peopleFile.exists())
+                peopleFile.createNewFile();
+            if(!relTypeFile.exists())
+                relTypeFile.createNewFile();
+            if(!relFile.exists())
+                relFile.createNewFile();
+        }
+        catch(IOException e){}
+        
         try
         {
             Scanner peopleScanner = new Scanner(peopleFile);
@@ -51,7 +65,6 @@ public class Controller {
             throw new RuntimeException();
         }
         
-        File relTypeFile = new File("relTypes.dat");
         try
         {
             Scanner relTypeScanner = new Scanner(relTypeFile);
@@ -79,7 +92,6 @@ public class Controller {
             throw new RuntimeException();
         }
         
-        File relFile = new File("relationships.dat");
         try
         {
             Scanner relScanner = new Scanner(relFile);
@@ -107,6 +119,7 @@ public class Controller {
         {
             System.out.println(people.get(key));
         }
+        
     }
     
     /**
@@ -120,12 +133,7 @@ public class Controller {
             File relTypeFile = new File("relTypes.dat");
             File relFile = new File("relationships.dat");
             
-            if(!peopleFile.exists())
-                peopleFile.createNewFile();
-            if(!relTypeFile.exists())
-                relTypeFile.createNewFile();
-            if(!relFile.exists())
-                relFile.createNewFile();
+            
             
             {
                 //The people will be written within this area, indented to have the formatting look nice
@@ -304,7 +312,9 @@ public class Controller {
     
     /***
      * Changes some parameter of a certain relationship type.
-     * 
+     * Takes in the ID of an existing RelType and changes the parameters of the RelType so that it has the given info
+     *      Basically "removes" a Type and puts it back in the same spots
+     *      Doesn't delete relationships between peeps
      * @param typeID
      * @param newTypeName
      * @param inverseType
@@ -318,7 +328,7 @@ public class Controller {
             String maleInverse, String femaleInverse)
     {
         RelationshipType relTypeNorm = new RelationshipType(typeName, maleType, femaleType, maleInverse, 
-                femaleInverse, typeMap.get(typeMap).getInverseID());
+                femaleInverse, typeMap.get(typeID).getInverseID());
         RelationshipType relTypeInvert = new RelationshipType(inverseType, maleInverse, femaleInverse, 
                 maleType, femaleType, typeID);
         typeMap.put(typeID, relTypeNorm);

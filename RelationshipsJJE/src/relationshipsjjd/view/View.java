@@ -2,6 +2,7 @@ package relationshipsjjd.view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import relationshipsjjd.controller.Controller;
 
 
 public class View 
@@ -97,7 +98,7 @@ public class View
         optionList += ")";
         System.out.print(prompt + " " + optionList + " ");
         
-        boolean goodAnswer=false;
+        boolean goodAnswer = false;
         
         do
         {
@@ -114,7 +115,6 @@ public class View
         } while (!goodAnswer);
         
         return null;
-        
     }
 
     public static class DummyClass
@@ -189,19 +189,20 @@ public class View
 //        }
     }
     
-    public String addPerson(String choiceInput)
+    public void addPerson(int selection)
     {
-        if (choiceInput == "add a new person")
-        {
-            System.out.println("What is the new person's name?");
-            Scanner input = new Scanner(System.in);
-            String nameInput = input.nextLine();
-            System.out.println("What is" + nameInput + "'s gender?");
+        Scanner input = new Scanner(System.in);
 
-        }
+        System.out.println("What is the new person's first name?");
+        String firstNameInput = input.nextLine();
 
-        return null;
+        System.out.println("What is " + firstNameInput + "'s last name?");
+        String lastNameInput = input.nextLine();
 
+        String promt = ("What is" + firstNameInput + "'s gender?");
+        String[] options = {"M", "F"};
+        boolean isMale = displayStringChoiceAndGetResponse(promt, options).equalsIgnoreCase("M");
+        
+        Controller.addPerson(firstNameInput, lastNameInput, isMale);
     }
-
 }

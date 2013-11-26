@@ -89,6 +89,13 @@ public class Person {
         return firstName + " "+lastName;
     }
     
+    public void setInfo(String nameOne, String nameTwo, boolean gender)
+    {
+        firstName = nameOne;
+        lastName=nameTwo;
+        isMale=gender;
+    }
+    
     /**
      * Removes this relationship from the ArrayList<Relationship> relationships
      * @param relationship

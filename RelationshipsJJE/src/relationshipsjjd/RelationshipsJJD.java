@@ -17,10 +17,10 @@ public class RelationshipsJJD {
      * @param args
      *            the command line arguments
      */
-
     public static void main(String[] args)
     {
         Controller.init();
+        Controller.editPerson(1, "Harlan", "Howe", true);
         Controller.savePeepsAndRelations();
         View.Run();
     }

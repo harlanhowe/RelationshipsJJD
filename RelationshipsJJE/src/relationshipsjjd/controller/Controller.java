@@ -29,6 +29,20 @@ public class Controller {
         typeMap = new HashMap<Integer, RelationshipType>();
         
         File peopleFile = new File("people.dat");
+        File relTypeFile = new File("relTypes.dat");
+        File relFile = new File("relationships.dat");
+        
+        try
+        {
+            if(!peopleFile.exists())
+                peopleFile.createNewFile();
+            if(!relTypeFile.exists())
+                relTypeFile.createNewFile();
+            if(!relFile.exists())
+                relFile.createNewFile();
+        }
+        catch(IOException e){}
+        
         try
         {
             Scanner peopleScanner = new Scanner(peopleFile);
@@ -51,7 +65,6 @@ public class Controller {
             throw new RuntimeException();
         }
         
-        File relTypeFile = new File("relTypes.dat");
         try
         {
             Scanner relTypeScanner = new Scanner(relTypeFile);
@@ -79,7 +92,6 @@ public class Controller {
             throw new RuntimeException();
         }
         
-        File relFile = new File("relationships.dat");
         try
         {
             Scanner relScanner = new Scanner(relFile);
@@ -107,6 +119,7 @@ public class Controller {
         {
             System.out.println(people.get(key));
         }
+        
     }
     
     /**
@@ -120,12 +133,7 @@ public class Controller {
             File relTypeFile = new File("relTypes.dat");
             File relFile = new File("relationships.dat");
             
-            if(!peopleFile.exists())
-                peopleFile.createNewFile();
-            if(!relTypeFile.exists())
-                relTypeFile.createNewFile();
-            if(!relFile.exists())
-                relFile.createNewFile();
+            
             
             {
                 //The people will be written within this area, indented to have the formatting look nice
@@ -275,15 +283,14 @@ public class Controller {
      */
     public static void removeRelationsihpType(int typeID)
     {
-        typeMap.remove(typeMap.get(typeID).getInverseID());
-        typeMap.remove(typeID);
+        
         Set<Integer> peopleMapKeys = people.keySet();
         for(int key : peopleMapKeys)
         {
             ArrayList<Relationship> toRemove = new ArrayList<Relationship>();
             for(Relationship rel : people.get(key).getRelations())
             {
-                if(rel.getIDRelationType()==typeID)
+                if(rel.getIDRelationType()==typeID || rel.getIDRelationType() == typeMap.get(typeID).getInverseID())
                 {
                     toRemove.add(rel);
                 }
@@ -293,16 +300,30 @@ public class Controller {
                 people.get(key).removeRelationship(rel);
             }
         }
+        
+        typeMap.remove(typeMap.get(typeID).getInverseID());
+        typeMap.remove(typeID);
     }
     
+    /***
+     * Removes a Person
+     * @param personID 
+     */
     public static void removePerson(int personID)
     {
         people.remove(people.get(personID));
     }
     
+    public static void editPerson(int personID, String firstName, String lastName, boolean isMale)
+    {
+        people.get(personID).setInfo(firstName, lastName, isMale);
+    }
+    
     /***
      * Changes some parameter of a certain relationship type.
-     * 
+     * Takes in the ID of an existing RelType and changes the parameters of the RelType so that it has the given info
+     *      Basically "removes" a Type and puts it back in the same spots
+     *      Doesn't delete relationships between peeps
      * @param typeID
      * @param newTypeName
      * @param inverseType
@@ -316,7 +337,7 @@ public class Controller {
             String maleInverse, String femaleInverse)
     {
         RelationshipType relTypeNorm = new RelationshipType(typeName, maleType, femaleType, maleInverse, 
-                femaleInverse, typeMap.get(typeMap).getInverseID());
+                femaleInverse, typeMap.get(typeID).getInverseID());
         RelationshipType relTypeInvert = new RelationshipType(inverseType, maleInverse, femaleInverse, 
                 maleType, femaleType, typeID);
         typeMap.put(typeID, relTypeNorm);

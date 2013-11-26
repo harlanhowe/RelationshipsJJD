@@ -275,15 +275,14 @@ public class Controller {
      */
     public static void removeRelationsihpType(int typeID)
     {
-        typeMap.remove(typeMap.get(typeID).getInverseID());
-        typeMap.remove(typeID);
+        
         Set<Integer> peopleMapKeys = people.keySet();
         for(int key : peopleMapKeys)
         {
             ArrayList<Relationship> toRemove = new ArrayList<Relationship>();
             for(Relationship rel : people.get(key).getRelations())
             {
-                if(rel.getIDRelationType()==typeID)
+                if(rel.getIDRelationType()==typeID || rel.getIDRelationType() == typeMap.get(typeID).getInverseID())
                 {
                     toRemove.add(rel);
                 }
@@ -293,6 +292,9 @@ public class Controller {
                 people.get(key).removeRelationship(rel);
             }
         }
+        
+        typeMap.remove(typeMap.get(typeID).getInverseID());
+        typeMap.remove(typeID);
     }
     
     public static void removePerson(int personID)

@@ -22,6 +22,7 @@ public class RelationshipsJJD {
     public static void main(String[] args)
     {
         Controller.init();
+        Controller.removeRelationsihpType(0);
         Controller.savePeepsAndRelations();
     }
 }

@@ -305,6 +305,10 @@ public class Controller {
         typeMap.remove(typeID);
     }
     
+    /***
+     * Removes a Person
+     * @param personID 
+     */
     public static void removePerson(int personID)
     {
         people.remove(people.get(personID));

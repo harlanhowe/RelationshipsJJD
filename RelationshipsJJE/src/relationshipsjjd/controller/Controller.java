@@ -265,7 +265,7 @@ public class Controller {
             int typeID)
     {
         people.get(personID).removeRelationship(new Relationship(personID, secondPersonID, typeID));
-        people.get(secondPersonID).removeRelationship(new Relationship(secondPersonID, personID, typeID));
+        people.get(secondPersonID).removeRelationship(new Relationship(secondPersonID, personID, typeMap.get(typeID).getInverseID()));
     }
     
     /***

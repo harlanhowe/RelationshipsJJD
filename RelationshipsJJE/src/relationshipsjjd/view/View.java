@@ -2,6 +2,7 @@ package relationshipsjjd.view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import relationshipsjjd.controller.Controller;
 
 
 public class View 
@@ -18,10 +19,10 @@ public class View
      * @param allowCancel - whether the user is given the option to cancel
      * @return - the number of the menu option chosen, or CANCEL_OPTION if canceling
      */
-    public int displayMenuAndGetResponse(String title, ArrayList<String> options, String prompt, boolean allowCancel)
+    public static int displayMenuAndGetResponse(String title, ArrayList<String> options, String prompt, boolean allowCancel)
     {
         if (title != null)
-            System.out.println("--------------------------------\n"+title);
+            System.out.println("--------------------------------\n" + title);
         
         System.out.println("--------------------------------");
         
@@ -68,7 +69,7 @@ public class View
             
         } while (!goodAnswer);
         
-        return selection -1;
+        return selection - 1;
     }
     
     /**
@@ -97,7 +98,7 @@ public class View
         optionList += ")";
         System.out.print(prompt + " " + optionList + " ");
         
-        boolean goodAnswer=false;
+        boolean goodAnswer = false;
         
         do
         {
@@ -114,7 +115,6 @@ public class View
         } while (!goodAnswer);
         
         return null;
-        
     }
 
     public static class DummyClass
@@ -163,34 +163,46 @@ public class View
         }
     }
 
-//	public static void displayMenuChoices()
-//        {
-//            System.out.println("Would you like to:\n");
-//            System.out.println("add a new person?");
-//            System.out.println("add a new relationship?");
-//            System.out.println("add a new relationship type?");
-//            System.out.println("delete a relationship?");
-//            System.out.println("delete a relationship type?");
-//            System.out.println("edit a relationship?");
-//            System.out.println("edit a relationship type?\n");
-//            
-//            Scanner input = new Scanner(System.in);
-//            String choiceInput = input.nextLine();
-//        }
-//        
-//        public String addPerson(String choiceInput)
-//        {
-//            if (choiceInput == "add a new person")
-//            {
-//                System.out.println("What is the new person's name?");
-//                Scanner input = new Scanner(System.in);
-//                String nameInput = input.nextLine();
-//                System.out.println("What is" + nameInput + "'s gender?");
-//                
-//            }
-//            
-//            return null;
-//            
-//        }
+    public static void Run()
+    {
+        String title = "Relationships Keeper!";
 
+        ArrayList<String> options = new ArrayList<String>();
+        options.add("Add a new person");
+        options.add("Add a new relationship");
+        options.add("Add a new relationship type");
+        options.add("Delete a relationship");
+        options.add("Delete a relationship type");
+        options.add("Edit a relationship");
+        options.add("Edit a relationship type");
+
+        String prompt = "Type a number 1-7";
+
+        boolean allowCancel = false;
+
+        int idChosen = displayMenuAndGetResponse(title, options, prompt, allowCancel);
+//        switch(idChosen)
+//        {
+//            case 1:
+//                addPerson();
+//                break;
+//        }
+    }
+    
+    public void addPerson(int selection)
+    {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("What is the new person's first name?");
+        String firstNameInput = input.nextLine();
+
+        System.out.println("What is " + firstNameInput + "'s last name?");
+        String lastNameInput = input.nextLine();
+
+        String promt = ("What is" + firstNameInput + "'s gender?");
+        String[] options = {"M", "F"};
+        boolean isMale = displayStringChoiceAndGetResponse(promt, options).equalsIgnoreCase("M");
+        
+        Controller.addPerson(firstNameInput, lastNameInput, isMale);
+    }
 }

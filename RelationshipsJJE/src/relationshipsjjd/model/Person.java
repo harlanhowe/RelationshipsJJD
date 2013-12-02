@@ -117,4 +117,13 @@ public class Person {
         theString += lastName + "\t" + firstName + "\t" + isMale;
         return theString;
     }
+    
+    /***
+     * Returns true if male, false if female
+     * @return 
+     */
+    public boolean getGender()
+    {
+        return isMale;
+    }
 }

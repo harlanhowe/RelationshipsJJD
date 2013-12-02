@@ -727,7 +727,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         else if (relationshipTabPanel.getSelectedIndex() ==1 ) // if we are
                                               // showing the personal map view 
         {
-            if (personalMap.getSelectedObjectId()==-1)// bail if no
+            if (personalMapPane1.getSelectedObjectId()==-1)// bail if no
                                                 // relationship is selected.
                 return;
             // Identify which relationship is selected, and do what you need to

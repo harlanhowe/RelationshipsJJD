@@ -5,6 +5,7 @@
 package relationshipsjjd.view.GUI;
 
 import javax.swing.JOptionPane;
+import relationshipsjjd.model.Relationship;
 
 /**
  *

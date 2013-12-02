@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package relationshippractice;
+package relationshipsjjd.view.GUI;
 
 import java.awt.Color;
 import java.awt.Font;

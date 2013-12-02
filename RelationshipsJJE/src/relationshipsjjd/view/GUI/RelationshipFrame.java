@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package relationshippractice;
+package relationshipsjjd.view.GUI;
 
 import javax.swing.JOptionPane;
 
@@ -167,7 +167,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         relationshipList = new javax.swing.JList();
         jPanel4 = new javax.swing.JPanel();
-        personalMap = new relationshippractice.PersonalMapPane();
+        personalMapPane1 = new relationshipsjjd.view.GUI.PersonalMapPane();
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         addRelationshipButton = new javax.swing.JButton();
@@ -584,14 +584,14 @@ public final class RelationshipFrame extends javax.swing.JFrame {
 
         relationshipTabPanel.addTab("ListView", jPanel3);
 
-        org.jdesktop.layout.GroupLayout personalMapLayout = new org.jdesktop.layout.GroupLayout(personalMap);
-        personalMap.setLayout(personalMapLayout);
-        personalMapLayout.setHorizontalGroup(
-            personalMapLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        org.jdesktop.layout.GroupLayout personalMapPane1Layout = new org.jdesktop.layout.GroupLayout(personalMapPane1);
+        personalMapPane1.setLayout(personalMapPane1Layout);
+        personalMapPane1Layout.setHorizontalGroup(
+            personalMapPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(0, 554, Short.MAX_VALUE)
         );
-        personalMapLayout.setVerticalGroup(
-            personalMapLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        personalMapPane1Layout.setVerticalGroup(
+            personalMapPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(0, 379, Short.MAX_VALUE)
         );
 
@@ -599,11 +599,11 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, personalMap, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, personalMapPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, personalMap, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, personalMapPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         relationshipTabPanel.addTab("Graphical View", jPanel4);
@@ -1076,7 +1076,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private javax.swing.JPanel newPersonPanel;
     private javax.swing.JPanel newRelationshipPanel;
     private javax.swing.JList personList;
-    private relationshippractice.PersonalMapPane personalMap;
+    private relationshipsjjd.view.GUI.PersonalMapPane personalMapPane1;
     private javax.swing.JCheckBox reciprocateCheckbox;
     private javax.swing.JList relTypeList;
     private javax.swing.JList relatedPersonList;

@@ -771,17 +771,17 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="personalMap" alignment="1" max="32767" attributes="0"/>
+                          <Component id="personalMapPane1" alignment="1" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="personalMap" alignment="1" max="32767" attributes="0"/>
+                          <Component id="personalMapPane1" alignment="1" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="relationshippractice.PersonalMapPane" name="personalMap">
+                    <Container class="relationshipsjjd.view.GUI.PersonalMapPane" name="personalMapPane1">
 
                       <Layout>
                         <DimensionLayout dim="0">

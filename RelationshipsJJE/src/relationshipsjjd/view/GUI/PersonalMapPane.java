@@ -125,31 +125,24 @@ public class PersonalMapPane extends JPanel
      */
     public void handleMouseClick(int x, int y)
     {
-        int numRelationships = 1;
-        if (numRelationships ==0)
-            return;
-        int i=0;
         // define the number of relationships for the current person.
         // TODO: you do this (handleMouseClick countRels)
-        int numRels = 0;
-        numRels = data.getPersonUnderID(currentPersonID).getNumberOfRelations();
+        int numRels = data.getPersonUnderID(currentPersonID).getNumberOfRelations();
         
         // loop over all the relationships for the current person...
         // TODO: you do this! (handleMouseClick loop) - just write the "for"
         //       or "while" statement.
+        for(int i = 0; i<=numRels; i++)
         {
             if (Math.pow(x-getCenterXForObject(i,numRels),2)+Math.pow(y-getCenterYForObject(i,numRels),2)<Math.pow(circleDiam,2))
             {
                 // TODO: you do this! (handleMouseClick selectedID) - set the selectedObjectID to the id of the
                 //          target of this iteration's relationship.
-                //selectedObjectId = ?????
-                
-                
+                selectedObjectId = i;
                 
                 repaint();
                 return;
             }
-            i++;
         }
         selectedObjectId = -1;
     }

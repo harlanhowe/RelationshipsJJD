@@ -118,6 +118,11 @@ public class Person {
         return theString;
     }
     
+    public int getNumberOfRelations()
+    {
+        return relationships.size();
+    }
+    
     /***
      * Returns true if male, false if female
      * @return 

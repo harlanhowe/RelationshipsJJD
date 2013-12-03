@@ -5,6 +5,7 @@
 package relationshipsjjd.view.GUI;
 
 import javax.swing.JOptionPane;
+import relationshipsjjd.controller.Controller;
 import relationshipsjjd.model.Relationship;
 
 /**
@@ -821,6 +822,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // Create a new person and add them to your list of people.
         // TODO: You do this! (addPersonButton)
         
+        Controller.addPerson(first, last, isMale);
         
         
         
@@ -1002,6 +1004,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        Controller.init();
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

@@ -9,8 +9,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
+
 import relationshipsjjd.controller.Controller;
+import relationshipsjjd.model.Relationship;
 
 /**
  *
@@ -170,6 +174,12 @@ public class PersonalMapPane extends JPanel
         //  You'll want to make use of getCenterXForObject(), getCenterYForObject(),
         //  lineColor, objectColor, 
         // TODO: you do this! (paintComponent - loop through relations)
+        
+        ArrayList<Relationship> rels = Controller.getRelationships(currentPersonID);
+        for(int relID = 0; relID < rels.size(); relID++)
+        {
+            
+        }
         
         g.setColor(subjectColor);
         g.fillOval(width/2-circleDiam/2,height/2-circleDiam/2,circleDiam,circleDiam);

@@ -5,7 +5,6 @@
 package relationshipsjjd;
 
 import relationshipsjjd.controller.Controller;
-import relationshipsjjd.view.View;
 
 /**
  * 
@@ -20,8 +19,6 @@ public class RelationshipsJJD {
     public static void main(String[] args)
     {
         Controller.init();
-        Controller.editPerson(1, "Harlan", "Howe", true);
         Controller.savePeepsAndRelations();
-        View.Run();
     }
 }

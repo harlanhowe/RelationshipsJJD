@@ -9,8 +9,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import javax.swing.JPanel;
+import relationshipsjjd.controller.Controller;
 
 /**
  *
@@ -18,10 +18,7 @@ import javax.swing.JPanel;
  */
 public class PersonalMapPane extends JPanel 
 {
-    // you'll want a link to your controller here.
-    // TODO: add a variable to the class that holds your Controller.
-    // private RelationshipData data;
-    
+    private Controller data;
     
     private int currentPersonID;
    
@@ -54,12 +51,10 @@ public class PersonalMapPane extends JPanel
      * it up.
      * @param inData - a link to my controller class. 
      */
-    // TODO: you do this! (write the setData method.)
-    
-//    public void setData(RelationshipData inData)
-//    {
-//        data = inData;
-//    }
+    public void setData(Controller inData)
+    {
+        data = inData;
+    }
 
     public int getSelectedObjectId() {
         return selectedObjectId;
@@ -78,6 +73,7 @@ public class PersonalMapPane extends JPanel
         
         repaint();
     }
+    
     /**
      * gets the location of where you should draw the center of the circle for
      * the person at the end of a particular relationship, based on which number
@@ -129,30 +125,24 @@ public class PersonalMapPane extends JPanel
      */
     public void handleMouseClick(int x, int y)
     {
-        int numRelationships = 1;
-        if (numRelationships ==0)
-            return;
-        int i=0;
         // define the number of relationships for the current person.
         // TODO: you do this (handleMouseClick countRels)
-        int numRels = 0;
+        int numRels = data.getPersonUnderID(currentPersonID).getNumberOfRelations();
         
         // loop over all the relationships for the current person...
         // TODO: you do this! (handleMouseClick loop) - just write the "for"
         //       or "while" statement.
+        for(int i = 0; i<=numRels; i++)
         {
             if (Math.pow(x-getCenterXForObject(i,numRels),2)+Math.pow(y-getCenterYForObject(i,numRels),2)<Math.pow(circleDiam,2))
             {
                 // TODO: you do this! (handleMouseClick selectedID) - set the selectedObjectID to the id of the
                 //          target of this iteration's relationship.
-                //selectedObjectId = ?????
-                
-                
+                selectedObjectId = i;
                 
                 repaint();
                 return;
             }
-            i++;
         }
         selectedObjectId = -1;
     }

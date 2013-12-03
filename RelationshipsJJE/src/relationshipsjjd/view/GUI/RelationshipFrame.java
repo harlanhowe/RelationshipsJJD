@@ -4,6 +4,7 @@
  */
 package relationshipsjjd.view.GUI;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import relationshipsjjd.controller.Controller;
 import relationshipsjjd.model.Relationship;
@@ -17,7 +18,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
      * which person is currently selected, or -1 if none are.
      */
     private int currentPersonIndex; 
-    
+    private ArrayList<Integer> IDs;
     /**
      * Creates new form RelationshipFrame
      */
@@ -48,11 +49,16 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     {
         // create a new array of Strings the size of the number of people to
         //   display.
-        String[] names = new String[0]; // = new String[???];
-        
+        String[] names = new String[Controller.getPeople().size()]; // = new String[???];
+        IDs = new ArrayList<Integer>();
         // fill the array in with your names, from whatever data structure you 
         //   have.
         // TODO: You do this! (updatePeopleList - size and fill list)
+        for (int key : Controller.getPeople().keySet())
+        {
+            names[key] = Controller.getPersonUnderID(key).getName();
+            IDs.add(key);
+        }
         
         
         
@@ -684,7 +690,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         // do whatever you have to to remove the person in question.
         // TODO: you do this! (removePersonButton)
-        
+        Controller.removePerson(IDs.get(selectedRow));
+        IDs.remove(selectedRow);
         
         
         
@@ -823,7 +830,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // TODO: You do this! (addPersonButton)
         
         Controller.addPerson(first, last, isMale);
-        
+        updatePeopleList();
+        updateRelationshipList();
         
         
         

@@ -19,6 +19,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
      */
     private int currentPersonIndex; 
     private ArrayList<Integer> IDs;
+    private Controller data;
     /**
      * Creates new form RelationshipFrame
      */
@@ -29,8 +30,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // I recommend you create an instance of your controller... and give
         // a copy to your "specialty" views.
         // TODO  you do this! (constructor)
-        
-        
+        data = new Controller();
         
         
         
@@ -49,14 +49,14 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     {
         // create a new array of Strings the size of the number of people to
         //   display.
-        String[] names = new String[Controller.getPeople().size()]; // = new String[???];
+        String[] names = new String[data.getPeople().size()+1]; // = new String[???];
         IDs = new ArrayList<Integer>();
         // fill the array in with your names, from whatever data structure you 
         //   have.
         // TODO: You do this! (updatePeopleList - size and fill list)
-        for (int key : Controller.getPeople().keySet())
+        for (int key : data.getPeople().keySet())
         {
-            names[key] = Controller.getPersonUnderID(key).getName();
+            names[key] = data.getPersonUnderID(key).getName();
             IDs.add(key);
         }
         
@@ -78,7 +78,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     {
         // create a new array of Strings the size of the number of people to
         //  display ... which might be zero if there is no selected person.
-        String[] relationshipStrings=new String[0];
+        String[] relationshipStrings=new String[0];//data.getPersonUnderID(currentPersonIndex).getNumberOfRelations()];
         
         
         // fill the array with Strings describing each relationship for the 
@@ -104,7 +104,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // make sure that the personal map has the up-to-date info and tell it
         // to update its appearance.
         // TODO: you do this! (updatePersonalMap)
-       
+        
         
         
         
@@ -783,6 +783,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         //   -1, if nothing is selected).
         // (uses personList.getSelectedIndex().)
         // TODO: You do this! (personSelectionChanged)
+        
+        //currentPersonIndex = personalMapPane1.getSelectedObjectId();
         
         
         

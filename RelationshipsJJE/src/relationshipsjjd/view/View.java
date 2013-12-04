@@ -185,7 +185,7 @@ public class View
         switch(idChosen)
         {
             case 1:
-                addPerson();
+//                addPerson();
                 break;
         }
     }

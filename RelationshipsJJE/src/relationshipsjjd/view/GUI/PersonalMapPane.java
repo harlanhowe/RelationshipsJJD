@@ -175,7 +175,7 @@ public class PersonalMapPane extends JPanel
         //  lineColor, objectColor, 
         // TODO: you do this! (paintComponent - loop through relations)
         
-        ArrayList<Relationship> rels = Controller.getRelationships(currentPersonID);
+        ArrayList<Relationship> rels = data.getRelationships(currentPersonID);
         for(int relID = 0; relID < rels.size(); relID++)
         {
             

@@ -8,6 +8,7 @@ public class Relationship {
     private int IDPerson1;
     private int IDPerson2;
     private int IDRelationType;
+    private Controller myControl;
     
     /**
      * 
@@ -15,11 +16,12 @@ public class Relationship {
      * @param IDPerson2
      * @param IDRelationType
      */
-    public Relationship(int IDPerson1, int IDPerson2, int IDRelationType)
+    public Relationship(int IDPerson1, int IDPerson2, int IDRelationType, Controller myControl)
     {
         this.setIDPerson1(IDPerson1);
         this.IDPerson2 = IDPerson2;
         this.IDRelationType = IDRelationType;
+        this.myControl = myControl;
     }
     
     /**
@@ -29,8 +31,8 @@ public class Relationship {
     @Override
     public String toString()
     {
-        return String.format("%s has a %s named %s", RelationshipFrame.controller.getPersonUnderID(IDPerson1).getName(),
-                RelationshipFrame.controller.getRelationshipTypeUnderID(IDRelationType).getNameForInverse(RelationshipFrame.controller.getPersonUnderID(IDPerson2).isMale), RelationshipFrame.controller.getPersonUnderID(IDPerson2).getName());
+        return String.format("%s has a %s named %s", myControl.getPersonUnderID(IDPerson1).getName(),
+                myControl.getRelationshipTypeUnderID(IDRelationType).getNameForInverse(myControl.getPersonUnderID(IDPerson2).isMale), myControl.getPersonUnderID(IDPerson2).getName());
     }
     
     /**
@@ -41,8 +43,8 @@ public class Relationship {
      */
     public String shorthandToString()
     {
-        return String.format("\thas a %s named %s", RelationshipFrame.controller.getRelationshipTypeUnderID(IDRelationType).getNameForPerson(RelationshipFrame.controller.getPersonUnderID(IDPerson2).isMale), 
-                RelationshipFrame.controller.getPersonUnderID(IDPerson2).getName());
+        return String.format("\thas a %s named %s", myControl.getRelationshipTypeUnderID(IDRelationType).getNameForPerson(myControl.getPersonUnderID(IDPerson2).isMale), 
+                myControl.getPersonUnderID(IDPerson2).getName());
     }
     
     /**

@@ -1,6 +1,7 @@
 package relationshipsjjd.model;
 
 import relationshipsjjd.controller.Controller;
+import relationshipsjjd.view.GUI.RelationshipFrame;
 
 public class Relationship {
     
@@ -28,8 +29,8 @@ public class Relationship {
     @Override
     public String toString()
     {
-        return String.format("%s has a %s named %s", Controller.getPersonUnderID(IDPerson1).getName(),
-                Controller.getRelationshipTypeUnderID(IDRelationType).getNameForInverse(Controller.getPersonUnderID(IDPerson2).isMale), Controller.getPersonUnderID(IDPerson2).getName());
+        return String.format("%s has a %s named %s", RelationshipFrame.controller.getPersonUnderID(IDPerson1).getName(),
+                RelationshipFrame.controller.getRelationshipTypeUnderID(IDRelationType).getNameForInverse(RelationshipFrame.controller.getPersonUnderID(IDPerson2).isMale), RelationshipFrame.controller.getPersonUnderID(IDPerson2).getName());
     }
     
     /**
@@ -40,8 +41,8 @@ public class Relationship {
      */
     public String shorthandToString()
     {
-        return String.format("\thas a %s named %s", Controller.getRelationshipTypeUnderID(IDRelationType).getNameForPerson(Controller.getPersonUnderID(IDPerson2).isMale), 
-                Controller.getPersonUnderID(IDPerson2).getName());
+        return String.format("\thas a %s named %s", RelationshipFrame.controller.getRelationshipTypeUnderID(IDRelationType).getNameForPerson(RelationshipFrame.controller.getPersonUnderID(IDPerson2).isMale), 
+                RelationshipFrame.controller.getPersonUnderID(IDPerson2).getName());
     }
     
     /**

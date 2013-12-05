@@ -18,7 +18,6 @@ public class RelationshipsJJD {
      */
     public static void main(String[] args)
     {
-        Controller.init();
-        Controller.savePeepsAndRelations();
+        
     }
 }

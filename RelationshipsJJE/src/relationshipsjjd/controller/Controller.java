@@ -16,14 +16,19 @@ import relationshipsjjd.model.RelationshipType;
 
 public class Controller {
     
-    private static Map<Integer, Person> people;
-    private static Map<Integer, RelationshipType> typeMap;
+    private  Map<Integer, Person> people;
+    private  Map<Integer, RelationshipType> typeMap;
+    
+    public Controller()
+    {
+        init();
+    }
     
     /***
      * Reads through the files to get stored data Looks for people, then
      * relationship types, then relationships
      */
-    public static void init()
+    private void init()
     {
         people = new HashMap<Integer, Person>();
         typeMap = new HashMap<Integer, RelationshipType>();
@@ -125,7 +130,7 @@ public class Controller {
     /**
      * Imagine the reverse process of the above method, save the people, relTypes, and relations
      */
-    public static boolean savePeepsAndRelations()
+    public  boolean savePeepsAndRelations()
     {
         try
         {
@@ -190,7 +195,7 @@ public class Controller {
      * @param firstName
      * @param lastName 
      */
-    public static void addPerson(String firstName, String lastName, boolean isMale)
+    public  void addPerson(String firstName, String lastName, boolean isMale)
     {
         Set<Integer> keys = people.keySet();
         int ID = 0;
@@ -212,7 +217,7 @@ public class Controller {
      * @param secondID
      * @param relType
      */
-    public static void addRelationship(int firstID, int secondID, int relType)
+    public  void addRelationship(int firstID, int secondID, int relType)
     {
         if (relType < typeMap.size())
         {
@@ -235,7 +240,7 @@ public class Controller {
      * @param maleInverse
      * @param femaleInverse
      */
-    public static void addRelationshipType(String typeName, String inverseType,
+    public  void addRelationshipType(String typeName, String inverseType,
             String maleType, String femaleType, String maleInverse,
             String femaleInverse)
     {
@@ -269,7 +274,7 @@ public class Controller {
      * @param secondPersonID
      * @param typeID
      */
-    public static void removeRelationship(int personID, int secondPersonID,
+    public  void removeRelationship(int personID, int secondPersonID,
             int typeID)
     {
         people.get(personID).removeRelationship(new Relationship(personID, secondPersonID, typeID));
@@ -281,7 +286,7 @@ public class Controller {
      * 
      * @param typeID
      */
-    public static void removeRelationsihpType(int typeID)
+    public  void removeRelationsihpType(int typeID)
     {
         
         Set<Integer> peopleMapKeys = people.keySet();
@@ -309,12 +314,12 @@ public class Controller {
      * Removes a Person
      * @param personID 
      */
-    public static void removePerson(int personID)
+    public  void removePerson(int personID)
     {
         people.remove(people.get(personID));
     }
     
-    public static void editPerson(int personID, String firstName, String lastName, boolean isMale)
+    public  void editPerson(int personID, String firstName, String lastName, boolean isMale)
     {
         people.get(personID).setInfo(firstName, lastName, isMale);
     }
@@ -332,7 +337,7 @@ public class Controller {
      * @param maleInverse
      * @param femaleInverse
      */
-    public static void editRelationshipType(int typeID, String typeName,
+    public  void editRelationshipType(int typeID, String typeName,
             String inverseType, String maleType, String femaleType,
             String maleInverse, String femaleInverse)
     {
@@ -352,7 +357,7 @@ public class Controller {
      * @param relIDCurr
      * @param relIDToChange
      */
-    public static void editRelationship(int personID, int secondPersonID,
+    public  void editRelationship(int personID, int secondPersonID,
             int relIDCurr, int relIDToChange)
     {
         for(Relationship rel : people.get(personID).getRelations())
@@ -376,7 +381,7 @@ public class Controller {
      * PRECONDITION:
      * That person should exist, will return null otherwise
      */
-    public static Person getPersonUnderID(int personID)
+    public  Person getPersonUnderID(int personID)
     {
         return people.get(personID);
     }
@@ -385,7 +390,7 @@ public class Controller {
      * PRECONDITION:
      * That relationship should exist, will return null otherwise
      */
-    public static RelationshipType getRelationshipTypeUnderID(int relID)
+    public  RelationshipType getRelationshipTypeUnderID(int relID)
     {
         return typeMap.get(relID);
     }
@@ -398,7 +403,7 @@ public class Controller {
      * @param maleInverse
      * @param femaleInverse
      */
-    public static void addReflexiveRelationshipType(String typeName,
+    public  void addReflexiveRelationshipType(String typeName,
             String maleType, String femaleType, String maleInverse, String femaleInverse)
     {
         Set<Integer> keys = typeMap.keySet();
@@ -425,7 +430,7 @@ public class Controller {
     /***
      * Prints out a list of People's names
      */
-    public static void printInfos()
+    public  void printInfos()
     {
         Set<Integer> keys = people.keySet();
         for(Integer key : keys)
@@ -438,7 +443,7 @@ public class Controller {
      * Returns the map of People
      * @return 
      */
-    public static Map<Integer, Person> getPeople()
+    public  Map<Integer, Person> getPeople()
     {
         return people;
     }
@@ -448,7 +453,7 @@ public class Controller {
      * @param ID
      * @return 
      */
-    public static ArrayList<Relationship> getRelationships(int ID)
+    public  ArrayList<Relationship> getRelationships(int ID)
     {
        return people.get(ID).getRelations();
     }
@@ -457,7 +462,7 @@ public class Controller {
      * returns all relationship types
      * @return 
      */
-    public static Map<Integer, RelationshipType> getRelationshipTypes()
+    public  Map<Integer, RelationshipType> getRelationshipTypes()
     {
         return typeMap;
     }

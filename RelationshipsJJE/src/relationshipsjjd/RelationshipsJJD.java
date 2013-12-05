@@ -18,6 +18,7 @@ public class RelationshipsJJD {
      */
     public static void main(String[] args)
     {
+        
         Controller control = new Controller();
         control.printInfos();
         control.addPerson("Jim", "Todd", false);

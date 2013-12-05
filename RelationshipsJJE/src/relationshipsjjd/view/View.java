@@ -206,6 +206,6 @@ public class View
         String[] options = {"M", "F"};
         boolean isMale = displayStringChoiceAndGetResponse(promt, options).equalsIgnoreCase("M");
         
-        RelationshipFrame.controller.addPerson(firstNameInput, lastNameInput, isMale);
+        //RelationshipFrame.data.addPerson(firstNameInput, lastNameInput, isMale);
     }
 }

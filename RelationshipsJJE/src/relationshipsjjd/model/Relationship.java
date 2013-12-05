@@ -22,6 +22,7 @@ public class Relationship {
         this.IDPerson2 = IDPerson2;
         this.IDRelationType = IDRelationType;
         this.myControl = myControl;
+        
     }
     
     /**

@@ -2,6 +2,7 @@ package relationshipsjjd.view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import relationshipsjjd.controller.Controller;
 import relationshipsjjd.view.GUI.RelationshipFrame;
 

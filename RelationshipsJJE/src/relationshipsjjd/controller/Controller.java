@@ -109,7 +109,7 @@ public class Controller {
                 int relType   = Integer.parseInt(items[3]);
                 if(people.containsKey(person1ID) && people.containsKey(person2ID))
                 {
-                    people.get(person1ID).addRelationship(new Relationship(person1ID, person2ID, relType));
+                    people.get(person1ID).addRelationship(new Relationship(person1ID, person2ID, relType, this));
                 }
             }
         }
@@ -223,9 +223,9 @@ public class Controller {
         {
             if (firstID < people.size() && secondID < people.size())
             {
-                people.get(firstID).addRelationship(new Relationship(firstID, secondID, relType));
+                people.get(firstID).addRelationship(new Relationship(firstID, secondID, relType, this));
                 people.get(secondID).addRelationship(new Relationship(secondID, firstID, 
-                        typeMap.get(relType).getInverseID()));
+                        typeMap.get(relType).getInverseID(), this));
             }
         }
     }
@@ -277,8 +277,8 @@ public class Controller {
     public  void removeRelationship(int personID, int secondPersonID,
             int typeID)
     {
-        people.get(personID).removeRelationship(new Relationship(personID, secondPersonID, typeID));
-        people.get(secondPersonID).removeRelationship(new Relationship(secondPersonID, personID, typeMap.get(typeID).getInverseID()));
+        people.get(personID).removeRelationship(new Relationship(personID, secondPersonID, typeID, this));
+        people.get(secondPersonID).removeRelationship(new Relationship(secondPersonID, personID, typeMap.get(typeID).getInverseID(), this));
     }
     
     /***
@@ -432,6 +432,7 @@ public class Controller {
      */
     public  void printInfos()
     {
+        System.out.println("Is this working:");
         Set<Integer> keys = people.keySet();
         for(Integer key : keys)
         {

@@ -21,8 +21,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private ArrayList<Integer> IDs;
     private Controller data;
     
-    public static Controller controller;
-    
     /**
      * Creates new form RelationshipFrame
      */
@@ -32,8 +30,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
 
         // I recommend you create an instance of your controller... and give
         // a copy to your "specialty" views.
-        // TODO  you do this! (constructor)
         data = new Controller();
+        personalMapPane1 = new PersonalMapPane();
         
         
         
@@ -80,8 +78,16 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     public void updateRelationshipList()
     {
         // create a new array of Strings the size of the number of people to
-        //  display ... which might be zero if there is no selected person.
-        String[] relationshipStrings=new String[0];//data.getPersonUnderID(currentPersonIndex).getNumberOfRelations()];
+        //  display ... which might be zero if there is no selected person.\
+        String[] relationshipStrings;
+        if(data.getPeople().containsKey(currentPersonIndex))
+        {
+            relationshipStrings=data.getPersonUnderID(currentPersonIndex).toString().split("\n");
+            relationshipList.setListData(relationshipStrings);
+        }
+        
+        
+        
         
         
         // fill the array with Strings describing each relationship for the 
@@ -93,7 +99,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         // tell the onscreen JList about the array of strings and tell it to
         // update its appearance.
-        relationshipList.setListData(relationshipStrings);
+        
         relationshipList.validate();
         
     }
@@ -693,7 +699,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         // do whatever you have to to remove the person in question.
         // TODO: you do this! (removePersonButton)
-        controller.removePerson(IDs.get(selectedRow));
+        data.removePerson(IDs.get(selectedRow));
         IDs.remove(selectedRow);
         
         
@@ -834,7 +840,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // Create a new person and add them to your list of people.
         // TODO: You do this! (addPersonButton)
         
-        controller.addPerson(first, last, isMale);
+        data.addPerson(first, last, isMale);
         updatePeopleList();
         updateRelationshipList();
         
@@ -1017,7 +1023,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        controller = new Controller();
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

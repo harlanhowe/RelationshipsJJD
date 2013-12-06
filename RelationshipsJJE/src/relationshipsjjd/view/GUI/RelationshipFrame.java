@@ -79,7 +79,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     {
         // create a new array of Strings the size of the number of people to
         //  display ... which might be zero if there is no selected person.\
-        String[] relationshipStrings;
+        String[] relationshipStrings = new String[0];
         if(data.getPeople().containsKey(IDs.get(currentPersonIndex)))
         {
             relationshipStrings=data.getPersonUnderID(IDs.get(currentPersonIndex)).toString().split("\n");

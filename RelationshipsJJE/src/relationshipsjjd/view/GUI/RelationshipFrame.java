@@ -80,9 +80,9 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // create a new array of Strings the size of the number of people to
         //  display ... which might be zero if there is no selected person.\
         String[] relationshipStrings;
-        if(data.getPeople().containsKey(currentPersonIndex))
+        if(data.getPeople().containsKey(IDs.get(currentPersonIndex)))
         {
-            relationshipStrings=data.getPersonUnderID(currentPersonIndex).toString().split("\n");
+            relationshipStrings=data.getPersonUnderID(IDs.get(currentPersonIndex)).toString().split("\n");
             relationshipList.setListData(relationshipStrings);
         }
         
@@ -732,7 +732,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             // Identify which relationship is selected, and do what you need to
             // to remove it.
             // TODO: you do this! (removeRelationship - list view.)
-            
+            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()).getIDPerson2(),
+                    data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()).getIDRelationType());
         
             
             
@@ -751,7 +752,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             // to remove it.
             // TODO: you do this! (removeRelationship - personal map view.)    
             
-            
+            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()).getIDPerson2(),
+                    data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()).getIDRelationType());
             
             
             

@@ -6,9 +6,11 @@ package relationshipsjjd.view.GUI;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -35,7 +37,7 @@ public class PersonalMapPane extends JPanel
     private int selectedObjectId; // the id# for whichever of the surrounding 
                                   //     people is selected.
     
-    public PersonalMapPane()
+    public PersonalMapPane(Controller data)
     {
         super();
         subjectColor = new Color(128,128,255);
@@ -45,6 +47,7 @@ public class PersonalMapPane extends JPanel
         addMouseListener(new PanelListener()); // activates the panelListener, 
                                                // so you can collect mouse clicks.
         selectedObjectId = -1; // nobody is selected...
+        this.data = data;
     }
 
     
@@ -159,6 +162,17 @@ public class PersonalMapPane extends JPanel
         // TODO: you do this! (paintComponent - bail)
 
         
+        if(data == null )
+        {
+           data = new Controller();
+           data.addPerson("Lindsi", "Todd", false);
+           data.addPerson("Jim", "Todd", false);
+           data.addReflexiveRelationshipType("couple", "boyfriend", "girlfriend", "boyfriend", "girlfriend");
+           data.addRelationship(0, 1, 0);
+        }
+        
+        if(!data.getPeople().containsKey(currentPersonID))
+            return;
         
         int width = this.getBounds().width;
         int height = this.getBounds().height;
@@ -175,10 +189,25 @@ public class PersonalMapPane extends JPanel
         //  lineColor, objectColor, 
         // TODO: you do this! (paintComponent - loop through relations)
         
-        ArrayList<Relationship> rels = data.getRelationships(currentPersonID);
+        ArrayList<Relationship> rels = data.getRelationships(0);
         for(int relID = 0; relID < rels.size(); relID++)
         {
+            g.setFont(g.getFont().deriveFont(20F));
+            g.setColor(this.lineColor);
+            g.drawLine(this.getCenterXForObject(relID, rels.size()), this.getCenterYForObject(relID, rels.size()), width/2, height/2);
             
+            String relName = data.getRelationshipTypeUnderID(rels.get(relID).getIDRelationType()).getRelationshipName();
+            Rectangle2D stringBounds = this.getStringSizeX(relName, g);
+            g.clearRect((int)((this.getCenterXForObject(relID, rels.size())+width/2)/2-stringBounds.getWidth()/2), (int)((this.getCenterYForObject(relID, rels.size())+height/2)/2-stringBounds.getHeight()/2), (int)stringBounds.getWidth(), (int)stringBounds.getHeight());
+            g.drawString(relName, (int)((this.getCenterXForObject(relID, rels.size())+width/2)/2-stringBounds.getWidth()/2), (int)((this.getCenterYForObject(relID, rels.size())+height/2)/2));
+            
+            g.setColor(this.objectColor);
+            g.fillOval(this.getCenterXForObject(relID, rels.size())-circleDiam/2,this.getCenterYForObject(relID, rels.size())-circleDiam/2,circleDiam,circleDiam);
+            
+            g.setColor(Color.black);
+            String name = data.getPersonUnderID(rels.get(relID).getIDPerson1()).getName();
+            stringBounds = this.getStringSizeX(name, g);
+            g.drawString(name,(int)(this.getCenterXForObject(relID, rels.size())-stringBounds.getWidth()/2), (int)(this.getCenterYForObject(relID, rels.size())));
         }
         
         g.setColor(subjectColor);
@@ -192,6 +221,12 @@ public class PersonalMapPane extends JPanel
         nameWidth = g.getFontMetrics().stringWidth(mainName);
         g.drawString(mainName, width/2-nameWidth/2, height/2+5);
         
+    }
+    
+    public Rectangle2D getStringSizeX(String string, Graphics g)
+    {
+        FontMetrics fm = g.getFontMetrics();
+        return fm.getStringBounds(string, g);
     }
     
     /**

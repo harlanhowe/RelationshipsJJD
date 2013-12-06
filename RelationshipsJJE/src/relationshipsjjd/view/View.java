@@ -2,7 +2,7 @@ package relationshipsjjd.view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.util.Set;
 import relationshipsjjd.controller.Controller;
 import relationshipsjjd.view.GUI.RelationshipFrame;
 
@@ -85,7 +85,7 @@ public class View
      * @param options - an array of possible strings the user could enter
      * @return a string that matches one of the options strings, ignoring case
      */
-    public String displayStringChoiceAndGetResponse(String prompt, String[] options)
+    public static String displayStringChoiceAndGetResponse(String prompt, String[] options)
     {
         String optionList = "(";
         
@@ -157,7 +157,7 @@ public class View
             
             id = Integer.parseInt(part[0]);
             
-            if (id>lastID)
+            if (id > lastID)
                 lastID = id;
             
             name = part[1];
@@ -165,6 +165,10 @@ public class View
         }
     }
 
+    /**
+     * Gives parameters to and calls displayMenuAndGetResponse, then calls a 
+     * specific method depending on what the user chose from the list of options.
+     */
     public static void Run()
     {
         String title = "Relationships Keeper!";
@@ -184,15 +188,22 @@ public class View
 
         int idChosen = displayMenuAndGetResponse(title, options, prompt, allowCancel);
         
-        switch(idChosen)
+        switch (idChosen)
         {
             case 1:
-//                addPerson();
+                addPerson();
+                break;
+            
+            case 2:
+                addRelationship();
                 break;
         }
     }
     
-    public void addPerson(int selection)
+    /**
+     * Asks the user for information about the new person they want to add to the list of people.
+     */
+    public static void addPerson()
     {
         Scanner input = new Scanner(System.in);
 
@@ -205,7 +216,19 @@ public class View
         String promt = ("What is" + firstNameInput + "'s gender?");
         String[] options = {"M", "F"};
         boolean isMale = displayStringChoiceAndGetResponse(promt, options).equalsIgnoreCase("M");
-        
+       
         RelationshipFrame.controller.addPerson(firstNameInput, lastNameInput, isMale);
+    }
+    
+    public static void addRelationship()
+    {
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Who is the person who has the relationship?");
+        Set<Integer> keys = Controller.getPeople().keySet();
+        for (int key : keys)
+        {
+            System.out.println(key + " " + Controller.getPeople().get(key).getName());
+        }
     }
 }

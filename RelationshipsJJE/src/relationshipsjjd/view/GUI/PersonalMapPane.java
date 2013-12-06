@@ -35,7 +35,7 @@ public class PersonalMapPane extends JPanel
     private int selectedObjectId; // the id# for whichever of the surrounding 
                                   //     people is selected.
     
-    public PersonalMapPane()
+    public PersonalMapPane(Controller data)
     {
         super();
         subjectColor = new Color(128,128,255);
@@ -45,6 +45,7 @@ public class PersonalMapPane extends JPanel
         addMouseListener(new PanelListener()); // activates the panelListener, 
                                                // so you can collect mouse clicks.
         selectedObjectId = -1; // nobody is selected...
+        this.data = data;
     }
 
     
@@ -158,6 +159,8 @@ public class PersonalMapPane extends JPanel
         // bail out if data is null, or if nobody is selected.....
         // TODO: you do this! (paintComponent - bail)
 
+        if(!data.getPeople().containsKey(currentPersonID))
+            return;
         
         
         int width = this.getBounds().width;
@@ -178,7 +181,8 @@ public class PersonalMapPane extends JPanel
         ArrayList<Relationship> rels = data.getRelationships(currentPersonID);
         for(int relID = 0; relID < rels.size(); relID++)
         {
-            
+            g.setColor(this.objectColor);
+            g.fillOval(this.getCenterXForObject(relID, rels.size())-circleDiam/2,this.getCenterYForObject(relID, rels.size())-circleDiam/2,circleDiam,circleDiam);
         }
         
         g.setColor(subjectColor);

@@ -31,7 +31,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // I recommend you create an instance of your controller... and give
         // a copy to your "specialty" views.
         data = new Controller();
-        personalMapPane1 = new PersonalMapPane();
+        //personalMapPane1 = new PersonalMapPane(data);
         
         
         
@@ -99,7 +99,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         // tell the onscreen JList about the array of strings and tell it to
         // update its appearance.
-        
+        relationshipList.setListData(relationshipStrings);
         relationshipList.validate();
         
     }
@@ -184,7 +184,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         relationshipList = new javax.swing.JList();
         jPanel4 = new javax.swing.JPanel();
-        personalMapPane1 = new relationshipsjjd.view.GUI.PersonalMapPane();
+        personalMapPane1 = new relationshipsjjd.view.GUI.PersonalMapPane(data);
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         addRelationshipButton = new javax.swing.JButton();

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
 import relationshipsjjd.controller.Controller;
-import relationshipsjjd.view.GUI.RelationshipFrame;
+//John added this: import relationshipsjjd.view.GUI.RelationshipFrame;
 
 
 public class View 
@@ -217,7 +217,9 @@ public class View
         String[] options = {"M", "F"};
         boolean isMale = displayStringChoiceAndGetResponse(promt, options).equalsIgnoreCase("M");
        
-        RelationshipFrame.controller.addPerson(firstNameInput, lastNameInput, isMale);
+        Controller.addPerson(firstNameInput, lastNameInput, isMale);
+        //John added this: RelationshipFrame.controller.addPerson(firstNameInput, lastNameInput, isMale);
+        //Josh added this: RelationshipFrame.data.addPerson(firstNameInput, lastNameInput, isMale);
     }
     
     public static void addRelationship()

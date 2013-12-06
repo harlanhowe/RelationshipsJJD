@@ -21,8 +21,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private ArrayList<Integer> IDs;
     private Controller data;
     
-    public static Controller controller;
-    
     /**
      * Creates new form RelationshipFrame
      */
@@ -32,13 +30,13 @@ public final class RelationshipFrame extends javax.swing.JFrame {
 
         // I recommend you create an instance of your controller... and give
         // a copy to your "specialty" views.
-        // TODO  you do this! (constructor)
         data = new Controller();
+        //personalMapPane1 = new PersonalMapPane(data);
         
         
         
         // then send the lists on screen whatever information they need to start.
-        currentPersonIndex = -1;  // nobody is selected.
+        currentPersonIndex = 0;  // nobody is selected.
         updatePeopleList();
         updateRelationshipList();
         
@@ -80,8 +78,16 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     public void updateRelationshipList()
     {
         // create a new array of Strings the size of the number of people to
-        //  display ... which might be zero if there is no selected person.
-        String[] relationshipStrings=new String[0];//data.getPersonUnderID(currentPersonIndex).getNumberOfRelations()];
+        //  display ... which might be zero if there is no selected person.\
+        String[] relationshipStrings = new String[0];
+        if(data.getPeople().containsKey(IDs.get(currentPersonIndex)))
+        {
+            relationshipStrings=data.getPersonUnderID(IDs.get(currentPersonIndex)).toString().split("\n");
+            relationshipList.setListData(relationshipStrings);
+        }
+        
+        
+        
         
         
         // fill the array with Strings describing each relationship for the 
@@ -178,7 +184,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         relationshipList = new javax.swing.JList();
         jPanel4 = new javax.swing.JPanel();
-        personalMapPane1 = new relationshipsjjd.view.GUI.PersonalMapPane();
+        personalMapPane1 = new relationshipsjjd.view.GUI.PersonalMapPane(data);
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         addRelationshipButton = new javax.swing.JButton();
@@ -693,7 +699,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         // do whatever you have to to remove the person in question.
         // TODO: you do this! (removePersonButton)
-        controller.removePerson(IDs.get(selectedRow));
+        data.removePerson(IDs.get(selectedRow));
         IDs.remove(selectedRow);
         
         
@@ -726,7 +732,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             // Identify which relationship is selected, and do what you need to
             // to remove it.
             // TODO: you do this! (removeRelationship - list view.)
-            
+            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()-1).getIDPerson2(),
+                    data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()-1).getIDRelationType());
         
             
             
@@ -745,7 +752,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             // to remove it.
             // TODO: you do this! (removeRelationship - personal map view.)    
             
-            
+            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()-1).getIDPerson2(),
+                    data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()-1).getIDRelationType());
             
             
             
@@ -787,7 +795,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // (uses personList.getSelectedIndex().)
         // TODO: You do this! (personSelectionChanged)
         
-        //currentPersonIndex = personalMapPane1.getSelectedObjectId();
+        currentPersonIndex = personList.getSelectedIndex()-1;
         
         
         
@@ -834,7 +842,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // Create a new person and add them to your list of people.
         // TODO: You do this! (addPersonButton)
         
-        controller.addPerson(first, last, isMale);
+        data.addPerson(first, last, isMale);
         updatePeopleList();
         updateRelationshipList();
         
@@ -982,7 +990,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // I suggest that you tell your controller to do the saving, and let it
         // delegate, as needed.
         // TODO: You do this! (SaveMenuItem)
-       
+       data.savePeepsAndRelations();
         
         
         
@@ -1017,7 +1025,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        controller = new Controller();
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

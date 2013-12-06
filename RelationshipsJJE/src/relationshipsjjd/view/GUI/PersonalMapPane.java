@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import relationshipsjjd.controller.Controller;
@@ -28,7 +29,7 @@ public class PersonalMapPane extends JPanel
     
     private int currentPersonID;
    
-    private Font myFont = new Font("Times New Roman",Font.PLAIN, 10);
+    private Font myFont = new Font("Times New Roman",Font.PLAIN, 20);
     // colors for the center circle, outer circles, and connecting lines.
     private Color subjectColor, objectColor, lineColor; 
     // how big the circles should be, based on the size of the window....
@@ -37,7 +38,9 @@ public class PersonalMapPane extends JPanel
     private int selectedObjectId; // the id# for whichever of the surrounding 
                                   //     people is selected.
     
-    public PersonalMapPane(Controller data)
+    private RelationshipFrame superFrame;
+    
+    public PersonalMapPane(Controller data, RelationshipFrame frameResidingIn)
     {
         super();
         subjectColor = new Color(128,128,255);
@@ -48,6 +51,8 @@ public class PersonalMapPane extends JPanel
                                                // so you can collect mouse clicks.
         selectedObjectId = -1; // nobody is selected...
         this.data = data;
+        
+        superFrame = frameResidingIn;
     }
 
     
@@ -120,7 +125,7 @@ public class PersonalMapPane extends JPanel
         int height = this.getBounds().height;
         circleDiam = Math.min(width/10, height/10);        
         if (numRelationships>0)
-            return (int)(width/2-circleDiam*4*Math.cos(2*index*Math.PI/numRelationships));
+            return (int)(height/2-circleDiam*4*Math.cos(2*index*Math.PI/numRelationships));
         return -1;
     }
     
@@ -132,21 +137,17 @@ public class PersonalMapPane extends JPanel
      */
     public void handleMouseClick(int x, int y)
     {
-        // define the number of relationships for the current person.
-        // TODO: you do this (handleMouseClick countRels)
+        // TODONE: Got num of rels
         int numRels = data.getPersonUnderID(currentPersonID).getNumberOfRelations();
         
-        // loop over all the relationships for the current person...
-        // TODO: you do this! (handleMouseClick loop) - just write the "for"
-        //       or "while" statement.
+        // TODONE: For loop through rels
         for(int i = 0; i<=numRels; i++)
         {
             if (Math.pow(x-getCenterXForObject(i,numRels),2)+Math.pow(y-getCenterYForObject(i,numRels),2)<Math.pow(circleDiam,2))
             {
-                // TODO: you do this! (handleMouseClick selectedID) - set the selectedObjectID to the id of the
-                //          target of this iteration's relationship.
+                // TODONE: Get the selected id
                 selectedObjectId = i;
-                
+                superFrame.selectRelationship(selectedObjectId+1);
                 repaint();
                 return;
             }
@@ -158,41 +159,25 @@ public class PersonalMapPane extends JPanel
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        // bail out if data is null, or if nobody is selected.....
-        // TODO: you do this! (paintComponent - bail)
-
         
-        if(data == null )
-        {
-           data = new Controller();
-           data.addPerson("Lindsi", "Todd", false);
-           data.addPerson("Jim", "Todd", false);
-           data.addReflexiveRelationshipType("couple", "boyfriend", "girlfriend", "boyfriend", "girlfriend");
-           data.addRelationship(0, 1, 0);
-        }
+        // TODONE: Bail out if data is null
         
         if(!data.getPeople().containsKey(currentPersonID))
             return;
+        
+        this.selectedObjectId = superFrame.getSelectedRelationship();
         
         int width = this.getBounds().width;
         int height = this.getBounds().height;
         circleDiam = Math.min(width/10, height/10);
         int nameWidth;
         g.setFont(myFont);
-        // loop through each of the relationships - you'll need to draw:
-        //   1) the line for the relationship
-        //   2) a string with a relationshipType for the line
-        //   3) a circle for the related person
-        //     3b) an outline for the related person, if this one is selected.
-        //   4) the name of the related person
-        //  You'll want to make use of getCenterXForObject(), getCenterYForObject(),
-        //  lineColor, objectColor, 
-        // TODO: you do this! (paintComponent - loop through relations)
         
-        ArrayList<Relationship> rels = data.getRelationships(0);
+        // TODONE: Draws the other circles and lines to them
+        
+        ArrayList<Relationship> rels = data.getRelationships(this.currentPersonID);
         for(int relID = 0; relID < rels.size(); relID++)
         {
-            g.setFont(g.getFont().deriveFont(20F));
             g.setColor(this.lineColor);
             g.drawLine(this.getCenterXForObject(relID, rels.size()), this.getCenterYForObject(relID, rels.size()), width/2, height/2);
             
@@ -205,17 +190,18 @@ public class PersonalMapPane extends JPanel
             g.fillOval(this.getCenterXForObject(relID, rels.size())-circleDiam/2,this.getCenterYForObject(relID, rels.size())-circleDiam/2,circleDiam,circleDiam);
             
             g.setColor(Color.black);
-            String name = data.getPersonUnderID(rels.get(relID).getIDPerson1()).getName();
+            String name = data.getPersonUnderID(rels.get(relID).getIDPerson2()).getName();
             stringBounds = this.getStringSizeX(name, g);
             g.drawString(name,(int)(this.getCenterXForObject(relID, rels.size())-stringBounds.getWidth()/2), (int)(this.getCenterYForObject(relID, rels.size())));
+            if(this.selectedObjectId == relID)
+                g.drawOval(this.getCenterXForObject(relID, rels.size())-circleDiam/2,this.getCenterYForObject(relID, rels.size())-circleDiam/2,circleDiam,circleDiam);
         }
         
         g.setColor(subjectColor);
         g.fillOval(width/2-circleDiam/2,height/2-circleDiam/2,circleDiam,circleDiam);
         
-        // Get the name of the current person, and set 'mainName' to it.
-        // TODO: You do this! (paintComponent - mainName)
-        String mainName = "Somebody";
+        // TODONE: Got the person's name
+        String mainName = data.getPersonUnderID(currentPersonID).getName();
         
         g.setColor(Color.BLACK);
         nameWidth = g.getFontMetrics().stringWidth(mainName);
@@ -240,5 +226,11 @@ public class PersonalMapPane extends JPanel
         {
             handleMouseClick(evt.getX(),evt.getY());
         }
+    }
+
+    public void setCurrentSelectedID(int index)
+    {
+        this.selectedObjectId = index;
+        repaint();
     }
 }

@@ -217,7 +217,7 @@ public class View
         String[] options = {"M", "F"};
         boolean isMale = displayStringChoiceAndGetResponse(promt, options).equalsIgnoreCase("M");
        
-        Controller.addPerson(firstNameInput, lastNameInput, isMale);
+        //Controller.addPerson(firstNameInput, lastNameInput, isMale);  --Commented out in order to not have this throw annoying messages at me when I try to run the program
         //John added this: RelationshipFrame.controller.addPerson(firstNameInput, lastNameInput, isMale);
         //Josh added this: RelationshipFrame.data.addPerson(firstNameInput, lastNameInput, isMale);
     }
@@ -227,10 +227,12 @@ public class View
         Scanner input = new Scanner(System.in);
         
         System.out.println("Who is the person who has the relationship?");
-        Set<Integer> keys = Controller.getPeople().keySet();
+        /*Set<Integer> keys = Controller.getPeople().keySet();
         for (int key : keys)
         {
             System.out.println(key + " " + Controller.getPeople().get(key).getName());
         }
+        --Commented out in order to not have this throw annoying messages at me when I try to run the program
+        */
     }
 }

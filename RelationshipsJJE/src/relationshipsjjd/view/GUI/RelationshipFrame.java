@@ -5,7 +5,9 @@
 package relationshipsjjd.view.GUI;
 
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
+
 import relationshipsjjd.controller.Controller;
 import relationshipsjjd.model.Relationship;
 
@@ -114,9 +116,9 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // to update its appearance.
         // TODO: you do this! (updatePersonalMap)
         
-        
-        
-        
+        personalMapPane1.setData(data);
+        personalMapPane1.setCurrentPersonID(IDs.get(currentPersonIndex));
+        personalMapPane1.setCurrentSelectedID(this.relationshipList.getSelectedIndex()-1);
     }
     
     /**
@@ -184,7 +186,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         relationshipList = new javax.swing.JList();
         jPanel4 = new javax.swing.JPanel();
-        personalMapPane1 = new relationshipsjjd.view.GUI.PersonalMapPane(data);
+        personalMapPane1 = new relationshipsjjd.view.GUI.PersonalMapPane(data, this);
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         addRelationshipButton = new javax.swing.JButton();
@@ -795,14 +797,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // (uses personList.getSelectedIndex().)
         // TODO: You do this! (personSelectionChanged)
         
-        currentPersonIndex = personList.getSelectedIndex()-1;
-        
-        
-        
-        
-        
-        
-        
+        currentPersonIndex = personList.getSelectedIndex();
         
         // update the relationship List and the personal map to reflect this change.
         updateRelationshipList();
@@ -998,6 +993,11 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_SaveMenuItemActionPerformed
 
+    public void selectRelationship(int relID)
+    {
+        this.relationshipList.setSelectedIndex(relID);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1112,4 +1112,9 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private javax.swing.JTextField revFemaleRTNameField;
     private javax.swing.JTextField revMaleRTNameField;
     // End of variables declaration//GEN-END:variables
+
+    public int getSelectedRelationship()
+    {
+        return relationshipList.getSelectedIndex()-1;
+    }
 }

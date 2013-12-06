@@ -36,7 +36,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         
         // then send the lists on screen whatever information they need to start.
-        currentPersonIndex = -1;  // nobody is selected.
+        currentPersonIndex = 0;  // nobody is selected.
         updatePeopleList();
         updateRelationshipList();
         
@@ -732,8 +732,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             // Identify which relationship is selected, and do what you need to
             // to remove it.
             // TODO: you do this! (removeRelationship - list view.)
-            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()).getIDPerson2(),
-                    data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()).getIDRelationType());
+            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()-1).getIDPerson2(),
+                    data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()-1).getIDRelationType());
         
             
             
@@ -752,8 +752,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             // to remove it.
             // TODO: you do this! (removeRelationship - personal map view.)    
             
-            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()).getIDPerson2(),
-                    data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()).getIDRelationType());
+            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()-1).getIDPerson2(),
+                    data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()-1).getIDRelationType());
             
             
             
@@ -795,7 +795,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // (uses personList.getSelectedIndex().)
         // TODO: You do this! (personSelectionChanged)
         
-        //currentPersonIndex = personalMapPane1.getSelectedObjectId();
+        currentPersonIndex = personList.getSelectedIndex();
         
         
         
@@ -990,7 +990,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // I suggest that you tell your controller to do the saving, and let it
         // delegate, as needed.
         // TODO: You do this! (SaveMenuItem)
-       
+       data.savePeepsAndRelations();
         
         
         

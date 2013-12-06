@@ -84,17 +84,19 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         String[] relationshipStrings = new String[0];
         if(data.getPeople().containsKey(IDs.get(currentPersonIndex)))
         {
-            relationshipStrings=data.getPersonUnderID(IDs.get(currentPersonIndex)).toString().split("\n");
-            relationshipList.setListData(relationshipStrings);
+            // TODONE: Fixed this method as to remove the possiblility for stupidity on our part, there was an extra 
+            //line do to the way the information was to be textually displayed
+            
+            String[] tempStrings = data.getPersonUnderID(IDs.get(currentPersonIndex)).toString().split("\n");
+            
+            relationshipStrings = new String[tempStrings.length-1];
+            
+            for(int i = 1; i < tempStrings.length; i++)
+                relationshipStrings[i-1] = tempStrings[i];
+            
         }
         
         
-        
-        
-        
-        // fill the array with Strings describing each relationship for the 
-        // selected person.
-        // TODO: You do this! (updateRelationshipList - fill array)
         
         
         
@@ -118,7 +120,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         personalMapPane1.setData(data);
         personalMapPane1.setCurrentPersonID(IDs.get(currentPersonIndex));
-        personalMapPane1.setCurrentSelectedID(this.relationshipList.getSelectedIndex()-1);
+        personalMapPane1.setCurrentSelectedID(this.relationshipList.getSelectedIndex());
     }
     
     /**
@@ -734,8 +736,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             // Identify which relationship is selected, and do what you need to
             // to remove it.
             // TODO: you do this! (removeRelationship - list view.)
-            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()-1).getIDPerson2(),
-                    data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()-1).getIDRelationType());
+            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()).getIDPerson2(),
+                    data.getRelationships(IDs.get(currentPersonIndex)).get(relationshipList.getSelectedIndex()).getIDRelationType());
         
             
             
@@ -754,8 +756,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             // to remove it.
             // TODO: you do this! (removeRelationship - personal map view.)    
             
-            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()-1).getIDPerson2(),
-                    data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()-1).getIDRelationType());
+            data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()).getIDPerson2(),
+                    data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()).getIDRelationType());
             
             
             
@@ -1115,6 +1117,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
 
     public int getSelectedRelationship()
     {
-        return relationshipList.getSelectedIndex()-1;
+        return relationshipList.getSelectedIndex();
     }
 }

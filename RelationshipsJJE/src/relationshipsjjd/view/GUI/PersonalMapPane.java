@@ -147,7 +147,7 @@ public class PersonalMapPane extends JPanel
             {
                 // TODONE: Get the selected id
                 selectedObjectId = i;
-                superFrame.selectRelationship(selectedObjectId+1);
+                superFrame.selectRelationship(selectedObjectId);
                 repaint();
                 return;
             }
@@ -228,9 +228,8 @@ public class PersonalMapPane extends JPanel
         }
     }
 
-    public void setCurrentSelectedID(int index)
+    public void setCurrentSelectedID(int selectedIndex)
     {
-        this.selectedObjectId = index;
-        repaint();
+        this.selectedObjectId = selectedIndex;
     }
 }

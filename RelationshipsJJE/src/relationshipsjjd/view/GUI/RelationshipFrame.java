@@ -52,7 +52,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     {
         // create a new array of Strings the size of the number of people to
         //   display.
-        String[] names = new String[data.getPeople().size()+1]; // = new String[???];
+        String[] names = new String[data.getPeople().size()]; // = new String[???];
         IDs = new ArrayList<Integer>();
         // fill the array in with your names, from whatever data structure you 
         //   have.
@@ -79,33 +79,37 @@ public final class RelationshipFrame extends javax.swing.JFrame {
      */
     public void updateRelationshipList()
     {
-        // create a new array of Strings the size of the number of people to
-        //  display ... which might be zero if there is no selected person.\
-        String[] relationshipStrings = new String[0];
-        if(data.getPeople().containsKey(IDs.get(currentPersonIndex)))
+        try
         {
-            // TODONE: Fixed this method as to remove the possiblility for stupidity on our part, there was an extra 
-            //line do to the way the information was to be textually displayed
-            
-            String[] tempStrings = data.getPersonUnderID(IDs.get(currentPersonIndex)).toString().split("\n");
-            
-            relationshipStrings = new String[tempStrings.length-1];
-            
-            for(int i = 1; i < tempStrings.length; i++)
-                relationshipStrings[i-1] = tempStrings[i];
-            
+            // create a new array of Strings the size of the number of people to
+            //  display ... which might be zero if there is no selected person.\
+            String[] relationshipStrings = new String[0];
+            System.out.println(currentPersonIndex);
+            if(data.getPeople().containsKey(IDs.get(currentPersonIndex)))
+            {
+                // TODONE: Fixed this method as to remove the possiblility for stupidity on our part, there was an extra 
+                //line do to the way the information was to be textually displayed
+                
+                String[] tempStrings = data.getPersonUnderID(IDs.get(currentPersonIndex)).toString().split("\n");
+                
+                relationshipStrings = new String[tempStrings.length-1];
+                
+                for(int i = 1; i < tempStrings.length; i++)
+                    relationshipStrings[i-1] = tempStrings[i];
+                
+            }
+        
+        
+        
+        
+        
+        
+            // tell the onscreen JList about the array of strings and tell it to
+            // update its appearance.
+            relationshipList.setListData(relationshipStrings);
+            relationshipList.validate();
         }
-        
-        
-        
-        
-        
-        
-        // tell the onscreen JList about the array of strings and tell it to
-        // update its appearance.
-        relationshipList.setListData(relationshipStrings);
-        relationshipList.validate();
-        
+        catch(Exception e){}
     }
     /**
      * updates the appearance of the Personal map, most often at the start of
@@ -114,6 +118,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
      */
     public void updatePersonalMap()
     {
+        if(currentPersonIndex == -1)
+            return;
         // make sure that the personal map has the up-to-date info and tell it
         // to update its appearance.
         // TODO: you do this! (updatePersonalMap)
@@ -705,7 +711,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // TODO: you do this! (removePersonButton)
         data.removePerson(IDs.get(selectedRow));
         IDs.remove(selectedRow);
-        
         
         
         

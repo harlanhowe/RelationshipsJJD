@@ -49,6 +49,7 @@ public class PersonalMapPane extends JPanel
         setBackground(Color.LIGHT_GRAY);
         addMouseListener(new PanelListener()); // activates the panelListener, 
                                                // so you can collect mouse clicks.
+        currentPersonID = -1;
         selectedObjectId = -1; // nobody is selected...
         this.data = data;
         
@@ -161,7 +162,8 @@ public class PersonalMapPane extends JPanel
         super.paintComponent(g);
         
         // TODONE: Bail out if data is null
-        
+        if(this.currentPersonID < 0)
+            return;
         if(!data.getPeople().containsKey(currentPersonID))
             return;
         

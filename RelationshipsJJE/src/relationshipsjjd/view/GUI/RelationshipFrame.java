@@ -56,16 +56,12 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         IDs = new ArrayList<Integer>();
         // fill the array in with your names, from whatever data structure you 
         //   have.
-        // TODO: You do this! (updatePeopleList - size and fill list)
+        // TODONE: You do this! (updatePeopleList - size and fill list)
         for (int key : data.getPeople().keySet())
         {
             names[key] = data.getPersonUnderID(key).getName();
             IDs.add(key);
         }
-        
-        
-        
-        
         
         // send the array of Strings to the JList of people onscreen:
         personList.setListData(names);
@@ -84,7 +80,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         String[] relationshipStrings = new String[0];
         if(data.getPeople().containsKey(IDs.get(currentPersonIndex)))
         {
-            // TODONE: Fixed this method as to remove the possiblility for stupidity on our part, there was an extra 
+            // TODO: Fixed this method as to remove the possiblility for stupidity on our part, there was an extra 
             //line do to the way the information was to be textually displayed
             
             String[] tempStrings = data.getPersonUnderID(IDs.get(currentPersonIndex)).toString().split("\n");
@@ -797,7 +793,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // determine the index of which row in personList is newly selected (or
         //   -1, if nothing is selected).
         // (uses personList.getSelectedIndex().)
-        // TODO: You do this! (personSelectionChanged)
+        // TODONE: You do this! (personSelectionChanged)
         
         currentPersonIndex = personList.getSelectedIndex();
         
@@ -837,7 +833,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         String last = lastNameField.getText();
         boolean isMale = genderMaleButton.isSelected();
         // Create a new person and add them to your list of people.
-        // TODO: You do this! (addPersonButton)
+        // TODONE: You do this! (addPersonButton)
         
         data.addPerson(first, last, isMale);
         updatePeopleList();

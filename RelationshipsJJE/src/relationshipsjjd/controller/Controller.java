@@ -316,6 +316,14 @@ public class Controller {
      */
     public  void removePerson(int personID)
     {
+        ArrayList<Relationship> tempList = new ArrayList<Relationship>();
+        
+        for(Relationship rel:getRelationships(personID))
+            tempList.add(rel);
+        
+        for(Relationship rel: tempList)
+            removeRelationship(rel.getIDPerson1(), rel.getIDPerson2(), rel.getIDRelationType());
+        
         people.remove(personID);
     }
     

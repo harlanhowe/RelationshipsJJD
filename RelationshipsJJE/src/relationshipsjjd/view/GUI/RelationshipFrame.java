@@ -826,8 +826,9 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         currentPersonIndex = personList.getSelectedIndex();
         
         // update the relationship List and the personal map to reflect this change.
-        updateRelationshipList();
+        
         updatePersonalMap();
+        updateRelationshipList();
     }//GEN-LAST:event_personSelectionChanged
 /**
  * the user just clicked on the addPersonButton, and now it's time to respond.
@@ -895,8 +896,16 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         //       you don't want it to include the selected person.
         // Create an array of Strings for the relationship types
         // TODO: You do this! (addRelationshipButton - setup UI)
-        String[] names = new String[0];
+        ArrayList<String> names = new ArrayList<String>();
         String[] typeStrings = new String[0];
+        
+        for(int key: data.getPeople().keySet())
+        {
+            if(key!=IDs.get(currentPersonIndex))
+            {
+                names.add(data.getPersonUnderID(key).getName());
+            }
+        }
         
         
         
@@ -905,7 +914,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         
         // update the JLists in the JPanel for the dialog with names and typeStrings
-        relatedPersonList.setListData(names);
+        relatedPersonList.setListData(names.toArray());
         relTypeList.setListData(typeStrings);
         // --------- STEP 2
         // show interface

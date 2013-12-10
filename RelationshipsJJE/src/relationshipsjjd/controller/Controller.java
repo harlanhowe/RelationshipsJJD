@@ -316,7 +316,7 @@ public class Controller {
      */
     public  void removePerson(int personID)
     {
-        people.remove(people.get(personID));
+        people.remove(personID);
     }
     
     public  void editPerson(int personID, String firstName, String lastName, boolean isMale)

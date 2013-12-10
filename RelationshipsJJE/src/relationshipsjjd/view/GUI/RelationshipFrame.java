@@ -699,11 +699,12 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private void removePersonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removePersonButtonActionPerformed
         // find out which # row on the list is selected, starting at zero
         // (or -1, if no row is selected).
-        int selectedRow = personList.getSelectedIndex();
+        int selectedRow = personList.getSelectedIndex()-1;
         
         // do whatever you have to to remove the person in question.
         // TODO: you do this! (removePersonButton)
         data.removePerson(IDs.get(selectedRow));
+        System.out.println("here");
         IDs.remove(selectedRow);
         
         
@@ -711,10 +712,11 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         
         // refresh the JLists on screen and clear their selections.
-        updatePeopleList();
-        updateRelationshipList();
+        
         personList.setSelectedIndices(new int[0]);
         relationshipList.setSelectedIndices(new int[0]);
+        updatePeopleList();
+        //updateRelationshipList();
     }//GEN-LAST:event_removePersonButtonActionPerformed
 /**
  * the user has just clicked the "removeRelationshipButton", and it's time to

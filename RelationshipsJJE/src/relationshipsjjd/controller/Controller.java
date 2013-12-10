@@ -316,9 +316,7 @@ public class Controller {
      */
     public  void removePerson(int personID)
     {
-        System.out.println("PeopleMap PreSize:"+people.size());
-        System.out.println("Person May Be Mapped If Next Is Not null: "+people.remove(people.get(personID)));
-        System.out.println("PeopleMap PostSize:"+people.size());
+        people.remove(personID);
     }
     
     public  void editPerson(int personID, String firstName, String lastName, boolean isMale)

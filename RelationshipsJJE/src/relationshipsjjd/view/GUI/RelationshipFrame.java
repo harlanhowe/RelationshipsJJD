@@ -59,7 +59,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // TODO: You do this! (updatePeopleList - size and fill list)
         for (int key : data.getPeople().keySet())
         {
-            names[key] = data.getPersonUnderID(key).getName();
+            names[IDs.size()] = data.getPersonUnderID(key).getName();
             IDs.add(key);
         }
         

@@ -176,6 +176,9 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         revFemaleRTNameField = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        genericRTInverseField = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -190,7 +193,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         relationshipList = new javax.swing.JList();
         jPanel4 = new javax.swing.JPanel();
-        personalMapPane1 = new relationshipsjjd.view.GUI.PersonalMapPane(data, this);
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         addRelationshipButton = new javax.swing.JButton();
@@ -404,10 +406,10 @@ public final class RelationshipFrame extends javax.swing.JFrame {
 
         addTypePanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel7.setText("Generic Name");
+        jLabel7.setText("Generic Inverse");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.25;
         addTypePanel.add(jLabel7, gridBagConstraints);
@@ -415,7 +417,11 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         genericRTNameField.setText("jTextField1");
         genericRTNameField.setMinimumSize(new java.awt.Dimension(300, 28));
         genericRTNameField.setPreferredSize(new java.awt.Dimension(300, 28));
-        genericRTNameField.setSize(new java.awt.Dimension(300, 28));
+        genericRTNameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genericRTNameFieldActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -424,10 +430,10 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.5;
         addTypePanel.add(genericRTNameField, gridBagConstraints);
 
-        jLabel8.setText("(e.g., \"Parent\")");
+        jLabel8.setText("(e.g., \"Child\")");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.25;
         addTypePanel.add(jLabel8, gridBagConstraints);
@@ -435,7 +441,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jLabel9.setText("Name to Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.25;
         addTypePanel.add(jLabel9, gridBagConstraints);
@@ -443,10 +449,9 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         fwdMaleRTNameField.setText("jTextField2");
         fwdMaleRTNameField.setMinimumSize(new java.awt.Dimension(300, 28));
         fwdMaleRTNameField.setPreferredSize(new java.awt.Dimension(300, 28));
-        fwdMaleRTNameField.setSize(new java.awt.Dimension(300, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.5;
         addTypePanel.add(fwdMaleRTNameField, gridBagConstraints);
@@ -454,7 +459,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jLabel10.setText("(e.g., \"Father\")");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.25;
         addTypePanel.add(jLabel10, gridBagConstraints);
@@ -462,6 +467,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jLabel11.setText("Name to Female");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.25;
         addTypePanel.add(jLabel11, gridBagConstraints);
@@ -471,7 +477,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         fwdFemaleRTNameField.setPreferredSize(new java.awt.Dimension(300, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.5;
         addTypePanel.add(fwdFemaleRTNameField, gridBagConstraints);
@@ -479,7 +485,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jLabel12.setText("(e.g., \"Mother\")");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.25;
         addTypePanel.add(jLabel12, gridBagConstraints);
@@ -487,7 +493,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jLabel13.setText("Reverse to Male");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.25;
         addTypePanel.add(jLabel13, gridBagConstraints);
@@ -497,7 +503,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         revMaleRTNameField.setPreferredSize(new java.awt.Dimension(300, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.5;
         addTypePanel.add(revMaleRTNameField, gridBagConstraints);
@@ -505,7 +511,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jLabel14.setText("(e.g., \"Son\")");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.25;
         addTypePanel.add(jLabel14, gridBagConstraints);
@@ -513,7 +519,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jLabel15.setText("Reverse to Female");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.25;
         addTypePanel.add(jLabel15, gridBagConstraints);
@@ -523,7 +529,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         revFemaleRTNameField.setPreferredSize(new java.awt.Dimension(300, 28));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.5;
         addTypePanel.add(revFemaleRTNameField, gridBagConstraints);
@@ -531,7 +537,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jLabel16.setText("(e.g., \"Daughter\")");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.25;
         addTypePanel.add(jLabel16, gridBagConstraints);
@@ -539,8 +545,40 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jLabel17.setText("Not all answers must be different.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         addTypePanel.add(jLabel17, gridBagConstraints);
+
+        genericRTInverseField.setText("jTextField1");
+        genericRTInverseField.setMinimumSize(new java.awt.Dimension(300, 28));
+        genericRTInverseField.setPreferredSize(new java.awt.Dimension(300, 28));
+        genericRTInverseField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genericRTInverseFieldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
+        addTypePanel.add(genericRTInverseField, gridBagConstraints);
+
+        jLabel18.setText("Generic Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 0.25;
+        addTypePanel.add(jLabel18, gridBagConstraints);
+
+        jLabel19.setText("(e.g., \"Parent\")");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.25;
+        addTypePanel.add(jLabel19, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -598,37 +636,14 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
         );
 
         relationshipTabPanel.addTab("ListView", jPanel3);
-
-        org.jdesktop.layout.GroupLayout personalMapPane1Layout = new org.jdesktop.layout.GroupLayout(personalMapPane1);
-        personalMapPane1.setLayout(personalMapPane1Layout);
-        personalMapPane1Layout.setHorizontalGroup(
-            personalMapPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 554, Short.MAX_VALUE)
-        );
-        personalMapPane1Layout.setVerticalGroup(
-            personalMapPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 379, Short.MAX_VALUE)
-        );
-
-        org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, personalMapPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, personalMapPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
         relationshipTabPanel.addTab("Graphical View", jPanel4);
 
         jPanel5.add(relationshipTabPanel, java.awt.BorderLayout.CENTER);
@@ -941,6 +956,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         //--------- STEP 1
         // clear the panel's textfields
         genericRTNameField.setText("");
+        genericRTInverseField.setText("");
         fwdMaleRTNameField.setText("");
         fwdFemaleRTNameField.setText("");
         revMaleRTNameField.setText("");
@@ -955,6 +971,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // get the information fron the textFields and create a new RelType.
         
         String genericName = genericRTNameField.getText();
+        String genericInverse = genericRTInverseField.getText();
         String fwdMaleName = fwdMaleRTNameField.getText();
         String fwdFemaleName = fwdFemaleRTNameField.getText();
         String revMaleName = revMaleRTNameField.getText();
@@ -962,7 +979,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         //Ok. Now create a relationship type based on this.
         // TODO: You do this! (addTypeButton)
-        
+        data.addRelationshipType(genericName, genericInverse, fwdMaleName, fwdFemaleName, revMaleName, revFemaleName);
         
         
         
@@ -993,6 +1010,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
      */
     private void editPersonButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
+        
         
     }
     
@@ -1031,6 +1049,14 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_SaveMenuItemActionPerformed
+
+    private void genericRTNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genericRTNameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genericRTNameFieldActionPerformed
+
+    private void genericRTInverseFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genericRTInverseFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genericRTInverseFieldActionPerformed
 
     public void selectRelationship(int relID)
     {
@@ -1097,6 +1123,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup genderButtonGroup;
     private javax.swing.JRadioButton genderFemaleButton;
     private javax.swing.JRadioButton genderMaleButton;
+    private javax.swing.JTextField genericRTInverseField;
     private javax.swing.JTextField genericRTNameField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1107,6 +1134,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1140,7 +1169,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private javax.swing.JPanel newPersonPanel;
     private javax.swing.JPanel newRelationshipPanel;
     private javax.swing.JList personList;
-    private relationshipsjjd.view.GUI.PersonalMapPane personalMapPane1;
     private javax.swing.JCheckBox reciprocateCheckbox;
     private javax.swing.JList relTypeList;
     private javax.swing.JList relatedPersonList;

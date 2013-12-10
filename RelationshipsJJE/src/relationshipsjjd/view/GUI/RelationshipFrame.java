@@ -804,7 +804,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // (uses personList.getSelectedIndex().)
         // TODO: You do this! (personSelectionChanged)
         
-        currentPersonIndex = personList.getSelectedIndex();
+        currentPersonIndex = personList.getSelectedIndex()-1;
         
         // update the relationship List and the personal map to reflect this change.
         updateRelationshipList();

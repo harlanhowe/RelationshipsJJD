@@ -809,8 +809,9 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         currentPersonIndex = personList.getSelectedIndex();
         
         // update the relationship List and the personal map to reflect this change.
-        updateRelationshipList();
+        
         updatePersonalMap();
+        updateRelationshipList();
     }//GEN-LAST:event_personSelectionChanged
 /**
  * the user just clicked on the addPersonButton, and now it's time to respond.

@@ -705,7 +705,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private void removePersonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removePersonButtonActionPerformed
         // find out which # row on the list is selected, starting at zero
         // (or -1, if no row is selected).
-        int selectedRow = personList.getSelectedIndex()-1;
+        int selectedRow = personList.getSelectedIndex();
         
         // do whatever you have to to remove the person in question.
         // TODO: you do this! (removePersonButton)

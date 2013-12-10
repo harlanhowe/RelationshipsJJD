@@ -316,6 +316,8 @@ public class Controller {
      */
     public  void removePerson(int personID)
     {
+        for(Relationship rel:getRelationships(personID))
+            removeRelationship(rel.getIDPerson1(), rel.getIDPerson2(), rel.getIDRelationType());
         people.remove(personID);
     }
     

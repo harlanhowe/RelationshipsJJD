@@ -721,7 +721,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         personList.setSelectedIndices(new int[0]);
         relationshipList.setSelectedIndices(new int[0]);
         updatePeopleList();
-        //updateRelationshipList();
+        updateRelationshipList();
     }//GEN-LAST:event_removePersonButtonActionPerformed
 /**
  * the user has just clicked the "removeRelationshipButton", and it's time to
@@ -806,7 +806,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // (uses personList.getSelectedIndex().)
         // TODO: You do this! (personSelectionChanged)
         
-        currentPersonIndex = personList.getSelectedIndex()-1;
+        currentPersonIndex = personList.getSelectedIndex();
         
         // update the relationship List and the personal map to reflect this change.
         updateRelationshipList();

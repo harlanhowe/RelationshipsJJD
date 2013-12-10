@@ -52,14 +52,14 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     {
         // create a new array of Strings the size of the number of people to
         //   display.
-        String[] names = new String[data.getPeople().size()+1]; // = new String[???];
+        String[] names = new String[data.getPeople().size()]; // = new String[???];
         IDs = new ArrayList<Integer>();
         // fill the array in with your names, from whatever data structure you 
         //   have.
         // TODONE: You do this! (updatePeopleList - size and fill list)
         for (int key : data.getPeople().keySet())
         {
-            names[key] = data.getPersonUnderID(key).getName();
+            names[IDs.size()] = data.getPersonUnderID(key).getName();
             IDs.add(key);
         }
         
@@ -75,34 +75,37 @@ public final class RelationshipFrame extends javax.swing.JFrame {
      */
     public void updateRelationshipList()
     {
-        // create a new array of Strings the size of the number of people to
-        //  display ... which might be zero if there is no selected person.\
-        String[] relationshipStrings = new String[0];
-        if(data.getPeople().containsKey(IDs.get(currentPersonIndex)))
+        try
         {
-            // TODO: Fixed this method as to remove the possiblility for stupidity on our part, there was an extra 
-            //line do to the way the information was to be textually displayed
-            
-            String[] tempStrings = data.getPersonUnderID(IDs.get(currentPersonIndex)).toString().split("\n");
-            
-            relationshipStrings = new String[tempStrings.length-1];
-            
-            for(int i = 1; i < tempStrings.length; i++)
-                relationshipStrings[i-1] = tempStrings[i];
-            
+            // create a new array of Strings the size of the number of people to
+            //  display ... which might be zero if there is no selected person.\
+            String[] relationshipStrings = new String[0];
+            System.out.println(currentPersonIndex);
+            if(data.getPeople().containsKey(IDs.get(currentPersonIndex)))
+            {
+                // TODONE: Fixed this method as to remove the possiblility for stupidity on our part, there was an extra 
+                //line do to the way the information was to be textually displayed
+                
+                String[] tempStrings = data.getPersonUnderID(IDs.get(currentPersonIndex)).toString().split("\n");
+                
+                relationshipStrings = new String[tempStrings.length-1];
+                
+                for(int i = 1; i < tempStrings.length; i++)
+                    relationshipStrings[i-1] = tempStrings[i];
+                
+            }
+        
+        
+        
+        
+        
+        
+            // tell the onscreen JList about the array of strings and tell it to
+            // update its appearance.
+            relationshipList.setListData(relationshipStrings);
+            relationshipList.validate();
         }
-        
-        
-        
-        
-        
-        
-        // tell the onscreen JList about the array of strings and tell it to
-        // update its appearance.
-        System.out.println("updating the relationship list");
-        relationshipList.setListData(relationshipStrings);
-        relationshipList.validate();
-        
+        catch(Exception e){}
     }
     /**
      * updates the appearance of the Personal map, most often at the start of
@@ -111,6 +114,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
      */
     public void updatePersonalMap()
     {
+        if(currentPersonIndex == -1)
+            return;
         // make sure that the personal map has the up-to-date info and tell it
         // to update its appearance.
         // TODO: you do this! (updatePersonalMap)
@@ -701,17 +706,18 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // do whatever you have to to remove the person in question.
         // TODO: you do this! (removePersonButton)
         data.removePerson(IDs.get(selectedRow));
+        System.out.println("here");
         IDs.remove(selectedRow);
         
         
         
         
-        
         // refresh the JLists on screen and clear their selections.
-        updatePeopleList();
-        updateRelationshipList();
+        
         personList.setSelectedIndices(new int[0]);
         relationshipList.setSelectedIndices(new int[0]);
+        updatePeopleList();
+        updateRelationshipList();
     }//GEN-LAST:event_removePersonButtonActionPerformed
 /**
  * the user has just clicked the "removeRelationshipButton", and it's time to
@@ -802,7 +808,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // (uses personList.getSelectedIndex().)
         // TODONE: You do this! (personSelectionChanged)
         
-        currentPersonIndex = personList.getSelectedIndex()-1;
+        currentPersonIndex = personList.getSelectedIndex();
         
         // update the relationship List and the personal map to reflect this change.
         updateRelationshipList();

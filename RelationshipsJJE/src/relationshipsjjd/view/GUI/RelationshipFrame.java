@@ -39,7 +39,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         // then send the lists on screen whatever information they need to start.
         currentPersonIndex = 0;  // nobody is selected.
-        updatePeopleList();
+        updatePeopleList() ;
         updateRelationshipList();
         
     }
@@ -99,6 +99,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         // tell the onscreen JList about the array of strings and tell it to
         // update its appearance.
+        System.out.println("updating the relationship list");
         relationshipList.setListData(relationshipStrings);
         relationshipList.validate();
         
@@ -723,6 +724,13 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         
         Relationship selectedRelationship = null;
+        String whichThingToDelete = "";
+        int response = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to delete"+whichThingToDelete+"?",
+                whichThingToDelete,
+                JOptionPane.OK_CANCEL_OPTION);
+        if (response == JOptionPane.CANCEL_OPTION)
+            return;
         if (relationshipTabPanel.getSelectedIndex()==0) // if we are showing
                                                         // the list view
         {
@@ -751,7 +759,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             // Identify which relationship is selected, and do what you need to
             // to remove it.
             // TODO: you do this! (removeRelationship - personal map view.)    
-            
             data.removeRelationship(IDs.get(currentPersonIndex), data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()).getIDPerson2(),
                     data.getRelationships(IDs.get(currentPersonIndex)).get(personalMapPane1.getSelectedObjectId()).getIDRelationType());
             
@@ -761,18 +768,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             
             
         }
-        if (selectedRelationship == null)
-            return;
-        String whichThingToDelete = "";
-        int response = JOptionPane.showConfirmDialog(this,
-                "Are you sure you want to delete"+whichThingToDelete+"?",
-                whichThingToDelete,
-                JOptionPane.OK_CANCEL_OPTION);
-        if (response == JOptionPane.CANCEL_OPTION)
-            return;
         // Have the controller remove the relationship.
         // TODO: You do this (removeRelationship - theWork.)
-        
         
         
         
@@ -781,7 +778,17 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         updateRelationshipList();
         updatePersonalMap();
     }//GEN-LAST:event_removeRelationshipButtonActionPerformed
-/**
+
+    /**
+     * 
+     * @param evt 
+     */
+    private void removeTypeButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        
+    }
+    
+    /**
  * the user (or the program) just altered which row of the list of people is
  * selected - or deselected every one; now it's time to respond to this.
  * @param evt a description of the event (e.g., when did they click, exactly;
@@ -973,6 +980,34 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_addTypeButtonActionPerformed
+    
+    /**
+     * 
+     * @param evt 
+     */
+    private void editPersonButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        
+    }
+    
+    /**
+     * 
+     * @param evt 
+     */
+    private void editRelationshipButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        
+    }
+    
+    /**
+     * 
+     * @param evt 
+     */
+    private void editTypeButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        
+    }
+    
     /**
      * The user just chose "Save" from the File menu. It's time to save the data.
      * @param evt a description of the event (e.g., when did they click, exactly;

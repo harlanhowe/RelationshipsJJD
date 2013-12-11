@@ -897,17 +897,25 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // Create an array of Strings for the relationship types
         // TODO: You do this! (addRelationshipButton - setup UI)
         ArrayList<String> names = new ArrayList<String>();
-        String[] typeStrings = new String[0];
+        ArrayList<String> typeStrings = new ArrayList<String>();
+        
+        ArrayList<Integer> peopleIDS = new ArrayList<Integer>();
+        ArrayList<Integer> typeIDS = new ArrayList<Integer>();
         
         for(int key: data.getPeople().keySet())
         {
             if(key!=IDs.get(currentPersonIndex))
             {
                 names.add(data.getPersonUnderID(key).getName());
+                peopleIDS.add(key);
             }
         }
         
-        
+        for(int key : data.getRelationshipTypes().keySet())
+        {
+            typeStrings.add(data.getRelationshipTypeUnderID(key).getRelationshipName());
+            typeIDS.add(key);
+        }
         
         
         
@@ -915,7 +923,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         // update the JLists in the JPanel for the dialog with names and typeStrings
         relatedPersonList.setListData(names.toArray());
-        relTypeList.setListData(typeStrings);
+        relTypeList.setListData(typeStrings.toArray());
         // --------- STEP 2
         // show interface
         int response = JOptionPane.showConfirmDialog(this, newRelationshipPanel, "Add Relationship",JOptionPane.OK_CANCEL_OPTION);
@@ -926,8 +934,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         // --------- STEP 3
         // find the person to connect to and the type of relationship
-        int personIndex = relatedPersonList.getSelectedIndex();
-        int relTypeIndex = relTypeList.getSelectedIndex();
+        int personIndex = peopleIDS.get(relatedPersonList.getSelectedIndex());
+        int relTypeIndex = typeIDS.get(relTypeList.getSelectedIndex());
         // alternately....
         // String relTypeDescription = relTypeList.getSelectedValue();
         
@@ -937,7 +945,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // TODO: You do this! (addRelationshipButton - create relationship)
         
         
-        
+        data.addRelationship(IDs.get(currentPersonIndex), personIndex, relTypeIndex);
         
        
         

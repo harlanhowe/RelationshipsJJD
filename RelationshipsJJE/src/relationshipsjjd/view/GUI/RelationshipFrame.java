@@ -39,7 +39,20 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         data = new Controller();
         //personalMapPane1 = new PersonalMapPane(data, this);
         
+        personalMapPane1 = new PersonalMapPane(data, this);
         
+        org.jdesktop.layout.GroupLayout personalMapPane1Layout = new org.jdesktop.layout.GroupLayout(personalMapPane1);
+        personalMapPane1.setLayout(personalMapPane1Layout);
+        personalMapPane1Layout.setHorizontalGroup(
+                personalMapPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 556, Short.MAX_VALUE)
+        );
+        personalMapPane1Layout.setVerticalGroup(
+                personalMapPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 381, Short.MAX_VALUE)
+        );
+        
+        jPanel4.add(personalMapPane1);
         
         // then send the lists on screen whatever information they need to start.
         currentPersonIndex = 0;  // nobody is selected.
@@ -698,6 +711,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             .add(jSplitPane1)
         );
 
+        
+        
         pack();
     }// </editor-fold>//GEN-END:initComponents
 

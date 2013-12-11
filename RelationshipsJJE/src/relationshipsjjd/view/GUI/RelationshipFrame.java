@@ -1025,7 +1025,10 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         //Ok. Now create a relationship type based on this.
         // TODO: You do this! (addTypeButton)
-        data.addRelationshipType(genericName, genericInverse, fwdMaleName, fwdFemaleName, revMaleName, revFemaleName);
+        if(reciprocal)
+            data.addReflexiveRelationshipType(genericName, fwdMaleName, fwdFemaleName, revMaleName, revFemaleName);
+        else
+            data.addRelationshipType(genericName, genericInverse, fwdMaleName, fwdFemaleName, revMaleName, revFemaleName);
         
         
         

@@ -1022,7 +1022,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addTypeButtonActionPerformed
     
     /**
-     * 
+     * Program this method in and edit the GUI to accommodate for it if we get the time.
      * @param evt 
      */
     private void editPersonButtonActionPerformed(java.awt.event.ActionEvent evt)
@@ -1032,7 +1032,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     }
     
     /**
-     * 
+     * Program this method in and edit the GUI to accommodate for it if we get the time.
      * @param evt 
      */
     private void editRelationshipButtonActionPerformed(java.awt.event.ActionEvent evt)
@@ -1041,7 +1041,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     }
     
     /**
-     * 
+     * Program this method in and edit the GUI to accommodate for it if we get the time.
      * @param evt 
      */
     private void editTypeButtonActionPerformed(java.awt.event.ActionEvent evt)

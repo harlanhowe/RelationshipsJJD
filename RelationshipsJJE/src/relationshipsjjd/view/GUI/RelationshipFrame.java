@@ -992,6 +992,16 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         revMaleRTNameField.setText("");
         revFemaleRTNameField.setText("");
         boolean reciprocal = this.reciprocateCheckbox.isSelected();
+        System.out.println(reciprocal);
+        
+        if(reciprocal)
+        {
+            genericRTInverseField.setBackground(Color.BLACK);
+            genericRTInverseField.setForeground(Color.WHITE);
+            genericRTInverseField.setText("This Will Be The Same As Above");
+            genericRTInverseField.setFocusable(false);
+        }
+        
         //--------- STEP 2
         // show the panel in a dialog box.
         int response = JOptionPane.showConfirmDialog(this, addTypePanel, "Add Relationship Type", JOptionPane.OK_CANCEL_OPTION);
@@ -1001,13 +1011,11 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // get the information fron the textFields and create a new RelType.
         
         String genericName = genericRTNameField.getText();
-        String genericInverse = genericRTInverseField.getText();
+        String genericInverse;
         if(reciprocal)
-        {
-            genericRTInverseField.setBackground(Color.BLACK);
-            genericRTInverseField.setText("Disabled");
-            genericRTInverseField.setFocusable(false);
-        }
+            genericInverse = genericName;
+        else
+            genericInverse= genericRTInverseField.getText();
         String fwdMaleName = fwdMaleRTNameField.getText();
         String fwdFemaleName = fwdFemaleRTNameField.getText();
         String revMaleName = revMaleRTNameField.getText();

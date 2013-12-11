@@ -24,6 +24,9 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private ArrayList<Integer> IDs;
     private Controller data;
     private PersonalMapPane personalMapPane1;
+    
+    private ArrayList<Integer> typeIDS;
+    private ArrayList<Integer> peopleIDS;
     /**
      * Creates new form RelationshipFrame
      */
@@ -909,8 +912,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         ArrayList<String> names = new ArrayList<String>();
         ArrayList<String> typeStrings = new ArrayList<String>();
         
-        ArrayList<Integer> peopleIDS = new ArrayList<Integer>();
-        ArrayList<Integer> typeIDS = new ArrayList<Integer>();
+        peopleIDS = new ArrayList<Integer>();
+        typeIDS = new ArrayList<Integer>();
         
         for(int key: data.getPeople().keySet())
         {
@@ -1024,15 +1027,19 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // Create a new list of RelationshipType strings and populate it with
         //  your revised list of relationship types.
         // TODO: You do this! (addRelationshipTypeButton update the type list)
-        String[] rtListNames = new String[0];
-                
+        ArrayList<String> typeStrings = new ArrayList<String>();
+        typeIDS = new ArrayList<Integer>();  
        
-        
+        for(int key : data.getRelationshipTypes().keySet())
+        {
+            typeStrings.add(data.getRelationshipTypeUnderID(key).getRelationshipName());
+            typeIDS.add(key);
+        }
         
         
         
         // update the list of relationship types in the previous dialog box.
-        relTypeList.setListData(rtListNames);
+        relTypeList.setListData(typeStrings.toArray());
         
         
     }//GEN-LAST:event_addTypeButtonActionPerformed

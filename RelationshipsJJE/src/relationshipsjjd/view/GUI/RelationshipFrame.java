@@ -997,6 +997,12 @@ public final class RelationshipFrame extends javax.swing.JFrame {
             genericRTInverseField.setText("This Will Be The Same As Above");
             genericRTInverseField.setFocusable(false);
         }
+        else
+        {
+            genericRTInverseField.setBackground(Color.WHITE);
+            genericRTInverseField.setForeground(Color.BLACK);
+            genericRTInverseField.setFocusable(true);
+        }
         
         //--------- STEP 2
         // show the panel in a dialog box.
@@ -1044,6 +1050,8 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         // update the list of relationship types in the previous dialog box.
         relTypeList.setListData(typeStrings.toArray());
+        
+        
         
         
     }//GEN-LAST:event_addTypeButtonActionPerformed

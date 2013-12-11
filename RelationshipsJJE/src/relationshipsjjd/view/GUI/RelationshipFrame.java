@@ -4,6 +4,7 @@
  */
 package relationshipsjjd.view.GUI;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -22,7 +23,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private int currentPersonIndex; 
     private ArrayList<Integer> IDs;
     private Controller data;
-    
+    private PersonalMapPane personalMapPane1;
     /**
      * Creates new form RelationshipFrame
      */
@@ -33,7 +34,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         // I recommend you create an instance of your controller... and give
         // a copy to your "specialty" views.
         data = new Controller();
-        //personalMapPane1 = new PersonalMapPane(data);
+        //personalMapPane1 = new PersonalMapPane(data, this);
         
         
         
@@ -705,6 +706,15 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         );
 
         pack();
+        
+        personalMapPane1 = new PersonalMapPane(data, this);
+        
+        org.jdesktop.layout.GroupLayout personalMapPanelLayout = new org.jdesktop.layout.GroupLayout(personalMapPane1);
+        personalMapPane1.setLayout(personalMapPanelLayout);
+        personalMapPanelLayout.setHorizontalGroup(personalMapPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(0, 554, Short.MAX_VALUE));
+        personalMapPanelLayout.setVerticalGroup(personalMapPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(0, 379, Short.MAX_VALUE));
+        
+        jPanel4.add(personalMapPane1);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -978,7 +988,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         fwdFemaleRTNameField.setText("");
         revMaleRTNameField.setText("");
         revFemaleRTNameField.setText("");
-        
+        boolean reciprocal = this.reciprocateCheckbox.isSelected();
         //--------- STEP 2
         // show the panel in a dialog box.
         int response = JOptionPane.showConfirmDialog(this, addTypePanel, "Add Relationship Type", JOptionPane.OK_CANCEL_OPTION);
@@ -989,6 +999,12 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         String genericName = genericRTNameField.getText();
         String genericInverse = genericRTInverseField.getText();
+        if(reciprocal)
+        {
+            genericRTInverseField.setBackground(Color.BLACK);
+            genericRTInverseField.setText("Disabled");
+            genericRTInverseField.setFocusable(false);
+        }
         String fwdMaleName = fwdMaleRTNameField.getText();
         String fwdFemaleName = fwdFemaleRTNameField.getText();
         String revMaleName = revMaleRTNameField.getText();

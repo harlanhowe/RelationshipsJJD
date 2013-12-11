@@ -421,11 +421,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         genericRTNameField.setText("jTextField1");
         genericRTNameField.setMinimumSize(new java.awt.Dimension(300, 28));
         genericRTNameField.setPreferredSize(new java.awt.Dimension(300, 28));
-        genericRTNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                genericRTNameFieldActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -555,11 +550,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         genericRTInverseField.setText("jTextField1");
         genericRTInverseField.setMinimumSize(new java.awt.Dimension(300, 28));
         genericRTInverseField.setPreferredSize(new java.awt.Dimension(300, 28));
-        genericRTInverseField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                genericRTInverseFieldActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -709,15 +699,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         );
 
         pack();
-        
-        personalMapPane1 = new PersonalMapPane(data, this);
-        
-        org.jdesktop.layout.GroupLayout personalMapPanelLayout = new org.jdesktop.layout.GroupLayout(personalMapPane1);
-        personalMapPane1.setLayout(personalMapPanelLayout);
-        personalMapPanelLayout.setHorizontalGroup(personalMapPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(0, 554, Short.MAX_VALUE));
-        personalMapPanelLayout.setVerticalGroup(personalMapPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(0, 379, Short.MAX_VALUE));
-        
-        jPanel4.add(personalMapPane1);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -1053,7 +1034,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addTypeButtonActionPerformed
     
     /**
-     * 
+     * Program this method in and edit the GUI to accommodate for it if we get the time.
      * @param evt 
      */
     private void editPersonButtonActionPerformed(java.awt.event.ActionEvent evt)
@@ -1063,7 +1044,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     }
     
     /**
-     * 
+     * Program this method in and edit the GUI to accommodate for it if we get the time.
      * @param evt 
      */
     private void editRelationshipButtonActionPerformed(java.awt.event.ActionEvent evt)
@@ -1072,7 +1053,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     }
     
     /**
-     * 
+     * Program this method in and edit the GUI to accommodate for it if we get the time.
      * @param evt 
      */
     private void editTypeButtonActionPerformed(java.awt.event.ActionEvent evt)
@@ -1097,14 +1078,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_SaveMenuItemActionPerformed
-
-    private void genericRTNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genericRTNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_genericRTNameFieldActionPerformed
-
-    private void genericRTInverseFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genericRTInverseFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_genericRTInverseFieldActionPerformed
 
     public void selectRelationship(int relID)
     {

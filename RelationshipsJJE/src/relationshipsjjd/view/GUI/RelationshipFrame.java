@@ -23,7 +23,6 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private int currentPersonIndex; 
     private ArrayList<Integer> IDs;
     private Controller data;
-    private PersonalMapPane personalMapPane1;
     
     private ArrayList<Integer> typeIDS;
     private ArrayList<Integer> peopleIDS;
@@ -31,28 +30,15 @@ public final class RelationshipFrame extends javax.swing.JFrame {
      * Creates new form RelationshipFrame
      */
     public RelationshipFrame() {
-        initComponents(); // This line is essential. Do not delete it. It must
-                            // go first in the constructor. 
-
         // I recommend you create an instance of your controller... and give
         // a copy to your "specialty" views.
         data = new Controller();
         //personalMapPane1 = new PersonalMapPane(data, this);
         
-        personalMapPane1 = new PersonalMapPane(data, this);
+        initComponents(); // This line is essential. Do not delete it. It must
+                            // go first in the constructor. 
+
         
-        org.jdesktop.layout.GroupLayout personalMapPane1Layout = new org.jdesktop.layout.GroupLayout(personalMapPane1);
-        personalMapPane1.setLayout(personalMapPane1Layout);
-        personalMapPane1Layout.setHorizontalGroup(
-                personalMapPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 556, Short.MAX_VALUE)
-        );
-        personalMapPane1Layout.setVerticalGroup(
-                personalMapPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 381, Short.MAX_VALUE)
-        );
-        
-        jPanel4.add(personalMapPane1);
         
         // then send the lists on screen whatever information they need to start.
         currentPersonIndex = 0;  // nobody is selected.
@@ -209,7 +195,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         relationshipList = new javax.swing.JList();
-        jPanel4 = new javax.swing.JPanel();
+        personalMapPane1 = new PersonalMapPane(data, this);
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         addRelationshipButton = new javax.swing.JButton();
@@ -651,7 +637,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
         );
 
         relationshipTabPanel.addTab("ListView", jPanel3);
-        relationshipTabPanel.addTab("Graphical View", jPanel4);
+        relationshipTabPanel.addTab("Graphical View", personalMapPane1);
 
         jPanel5.add(relationshipTabPanel, java.awt.BorderLayout.CENTER);
 
@@ -1200,7 +1186,7 @@ public final class RelationshipFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private PersonalMapPane personalMapPane1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
